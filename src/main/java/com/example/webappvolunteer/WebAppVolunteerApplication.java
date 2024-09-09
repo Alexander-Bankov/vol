@@ -10,4 +10,5 @@ public class WebAppVolunteerApplication {
 		SpringApplication.run(WebAppVolunteerApplication.class, args);
 	}
 
+
 }
