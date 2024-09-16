@@ -1,0 +1,20 @@
+
+
+.title {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.details {
+    font-size: 24px;
+    color: #666;
+}
+
+.clear{
+    clear: both;
+}
+
+.spacer {
+    margin-top: 1cm;
+}
