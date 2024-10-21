@@ -1,11 +1,10 @@
-package com.example.webappvolunteer.dao;
+package com.example.webappvolunteer.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -18,12 +17,12 @@ public class Volunteer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "man_id")
-    private BigInteger volunteer_id;
+    private BigInteger volunteerId;
 
     @Getter
     @Setter
     @Column(name = "e_mail")
-    private String e_mail;
+    private String eMail;
 
     @Getter
     @Setter
@@ -68,5 +67,5 @@ public class Volunteer {
     @Getter
     @Setter
     @Column(name = "brief_info")
-    private String brief_info;
+    private String briefInfo;
 }

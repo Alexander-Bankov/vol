@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Медицинские Калькуляторы</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="text-center">
+    <h1>Персональная информация</h1>
+</div>
+<section id="services">
+    <div class="container" id="actionTable">
+        <h2>Виды калькуляторов</h2>
+        <button style="float:left" type="submit" id="Send" class="btn btn-primary">Найти</button>
+        <button style="float:left" type="reset" id="Reset" class="btn btn-primary">Очистить</button>
+        <div class="mb-3">
+            <label for="mailInput" class="form-label">MAIL</label>
+            <input type="email" id="mailInput" class="form-control" aria-describedby="mail">
+            <div id="mail" class="form-control">
+                Введите mail
+            </div>
+        </div>
+        <table class="table" id="personalInfoTable">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Email</th>
+                <th scope="col">Дата рождения</th>
+                <th scope="col">Пол</th>
+                <th scope="col">Опыт</th>
+                <th scope="col">Язык</th>
+                <th scope="col">Краткая информация</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Данные из базы данных будут добавляться сюда -->
+            </tbody>
+        </table>
+    </div>
+</section>
+<script>
+    document.write("<script type='text/javascript' src='app/ShowPersonalInfo.js?v=" + Date.now() + "'><\/script>");
+</script>
+</body>
+</html>

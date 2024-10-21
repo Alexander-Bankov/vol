@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Expires" content="0"/>
+        <title>Регистрация пользователя</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<header th:fragment="head">
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div id="calc_input" class="col-6">
+            <h1 style="padding-left: 27%;">Пользователи</h1>
+            <form name="form" id="form">
+                <div class="mb-3">
+                    <label for="mailInput" class="form-label">MAIL</label>
+                    <input type="email" id="mailInput" class="form-control" aria-describedby="mail" >
+                    <div id="mail" class="form-control">
+                        Введите mail
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">пароль</label>
+                    <input type="password" id="passwordInput" class="form-control" aria-describedby="password" >
+                    <div id="password" class="form-control">
+                        Введите password
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button style="float:left" type=submit id="Send" class="btn btn-primary">Регистрация</button>
+                    <button style="float:left" type=reset id="Reset"class="btn btn-primary">Очистить</button>
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+<h1 id="result" class="details"></h1>
+
+
+<script>document.write("<script type='text/javascript' src='app/bd.js?v=" + Date.now() + "'><\/script>");</script>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
