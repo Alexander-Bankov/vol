@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Администратор Информация</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="text-center">
+    <h1>Личный кабинет администратора</h1>
+</div>
+<section id="services">
+    <div class="container" id="volunteerTable">
+        <h2>Поиск волонтеров</h2>
+        <button style="float:left" type="submit" id="SendMail" class="btn btn-primary">Найти</button>
+        <button style="float:left" type="reset" id="ResetMail" class="btn btn-primary">Очистить</button>
+        <div class="mb-3">
+            <label for="mailInput" class="form-label"></label>
+            <input type="email" id="mailInput" class="form-control" aria-describedby="mail">
+            <div id="mail" class="form-control">
+                Введите mail
+            </div>
+        </div>
+        <table class="table" id="personalInfoTable">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Email</th>
+                <th scope="col">Дата рождения</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Языки</th>
+                <th scope="col">Краткая информация</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Данные из базы данных будут добавляться сюда -->
+            </tbody>
+        </table>
+    </div>
+    <div class="container" id="actionTable">
+        <h2>Поиск событий</h2>
+        <button style="float:left" type="submit" id="SendNameAction" class="btn btn-primary">Найти</button>
+        <button style="float:left" type="reset" id="ResetMailAction" class="btn btn-primary">Очистить</button>
+        <div class="mb-3">
+            <label for="mailInput" class="form-label"></label>
+            <input type="email" id="actionInput" class="form-control" aria-describedby="mail">
+            <div id="actionName" class="form-control">
+                Введите Название события
+            </div>
+        </div>
+        <table class="table" id="actionInfoTable">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название события</th>
+                <th scope="col">Дата начала события</th>
+                <th scope="col">Дата конца события</th>
+                <th scope="col">Место проведения</th>
+                <th scope="col">Список мероприятий</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Данные из базы данных будут добавляться сюда -->
+            </tbody>
+        </table>
+    </div>
+    <div class="container" id="eventsITable">
+        <h2>Поиск мероприятий</h2>
+        <button style="float:left" type="submit" id="SendEventName" class="btn btn-primary">Найти</button>
+        <button style="float:left" type="reset" id="ResetEventName" class="btn btn-primary">Очистить</button>
+        <div class="mb-3">
+            <label for="mailInput" class="form-label"></label>
+            <input type="email" id="eventNameInput" class="form-control" aria-describedby="mail">
+            <div id="eventsName" class="form-control">
+                Введите mail
+            </div>
+        </div>
+        <table class="table" id="eventInfoTable">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название мероприятия</th>
+                <th scope="col">название события, к которому относится</th>
+                <th scope="col">место проведения</th>
+                <th scope="col">дата и время начала</th>
+                <th scope="col">дата и время конца</th>
+                <th scope="col">список участников</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Данные из базы данных будут добавляться сюда -->
+            </tbody>
+        </table>
+    </div>
+
+</section>
+<script>
+    document.write("<script type='text/javascript' src='app/ShowPersonalInfo.js?v=" + Date.now() + "'><\/script>");
+</script>
+</body>
+</html>

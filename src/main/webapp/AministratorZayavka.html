@@ -96,23 +96,39 @@
 </head>
 <body>
 <div class="text-center">
-    <h1>Список мероприятий</h1>
+    <h1>Личный кабинет администратора</h1>
 </div>
 <section id="services">
-    <div class="container" id="eventTable">
-        <table class="table" id="eventInfoTable">
+    <div class="container" id="zayavkaTable">
+        <h2>Поиск мероприятий</h2>
+        <button style="float:left" type="submit" id="SendMail" class="btn btn-primary">Найти</button>
+        <button style="float:left" type="reset" id="ResetMail" class="btn btn-primary">Очистить</button>
+        <div class="mb-3">
+            <label for="mailInput" class="form-label"></label>
+            <input type="email" id="mailInput" class="form-control" aria-describedby="mail">
+            <div id="mail" class="form-control">
+                Введите mail
+            </div>
+        </div>
+        <table class="table" id="personalInfoTable">
             <thead>
             <tr>
+                <th scope="col">Действие</th> <!-- Новый столбец для кнопок -->
                 <th scope="col">#</th>
-                <th scope="col">Название мероприятия</th>
-                <th scope="col">название события, к которому относится</th>
-                <th scope="col">место проведения</th>
-                <th scope="col">дата и время начала</th>
-                <th scope="col">дата и время конца</th>
-                <th scope="col">список участников</th>
+                <th scope="col">События</th>
+                <th scope="col">Мероприятие</th>
+                <th scope="col">Email</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Дата рождения</th>
+                <th scope="col">Адрес проживания</th>
+                <th scope="col">Языки</th>
+                <th scope="col">Краткая информация</th>
             </tr>
             </thead>
             <tbody>
+            <!-- Здесь могут быть добавлены другие участники -->
             </tbody>
         </table>
     </div>

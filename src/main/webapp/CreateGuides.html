@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>Вход</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<header th:fragment="head">
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div id="calc_input" class="col-8">
+            <h1 style="padding-left: 27%;">Вход</h1>
+            <form name="form" id="form">
+                <div class="mb-3">
+                    <label for="actionInput" class="form-label">Событие</label>
+                    <input type="string" id="actionInput" class="form-control" aria-describedby="action">
+                    <div id="action_name" class="form-control">
+                        Введите название события
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button style="float:left" type="submit" id="Save_action" class="btn btn-primary">добавить событие</button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="mb-3">
+                    <label for="languageInput" class="form-label">ЯЗЫК</label>
+                    <input type="string" id="languageInput" class="form-control" aria-describedby="language">
+                    <div id="language" class="form-control">
+                        Введите название языка
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button style="float:left" type="submit" id="SaveLanguage" class="btn btn-primary">добавить язык</button>
+                </div>
+                <div class="clear"></div>
+            </form>
+            <br>
+            <div class="col-12" style="display: flex; gap: 10px;">
+                <button type="submit" id="ShowLanguage" class="btn btn-primary">Показать события</button>
+                <button type="submit" id="ShowAction" class="btn btn-primary">Показать языки</button>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<h1 id="result" class="details"></h1>
+
+<script>document.write("<script type='text/javascript' src='app/Guide.js?v=" + Date.now() + "'><\/script>");</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>Медицинские Калькуляторы</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="text-center">
+    <h1>Личный кабинет волонтера</h1>
+</div>
+<section id="services">
+    <div class="container" id="actionTable">
+        <h2>Личные данные</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Дата рождения</th>
+                <th scope="col">Адрес проживания</th>
+                <th scope="col">Языки</th>
+                <th scope="col">Краткая информация</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td><span class="data">example@example.com</span></td>
+                <td><span class="data">Иван</span></td>
+                <td><span class="data">Иванов</span></td>
+                <td><span class="data">Иванович</span></td>
+                <td><span class="data">01.01.1990</span></td>
+                <td><span class="data">Москва, ул. Ленина</span></td>
+                <td><span class="data">Русский</span></td>
+                <td><span class="data">Краткая информация</span></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="col-12">
+            <button style="float:left" type="button" id="Change" class="btn btn-primary">Изменить</button>
+        </div>
+        <div class="col-12">
+            <button style="float:left" type="button" id="Save" class="btn btn-primary">Сохранить</button>
+        </div>
+    </div>
+    <br></br>
+    <div class="container" id="zayavkaTable">
+        <h2>Заявки</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">События</th>
+                <th scope="col">Мероприятие</th>
+                <th scope="col">Email</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+<script>
+    let isEditing = false;
+
+    document.getElementById('Change').onclick = function() {
+        const cells = document.querySelectorAll('tbody td');
+        cells.forEach((cell, index) => {
+            if (index > 0) { // Пропустить первый столбец #
+                const data = cell.querySelector('.data').innerText;
+                cell.innerHTML = `<input type="text" class="form-control" value="${data}"/>`;
+            }
+        });
+        this.style.display = 'none'; // Скрыть кнопку "Изменить"
+    };
+
+    document.getElementById('Save').onclick = function() {
+        const inputs = document.querySelectorAll('tbody input');
+        const dataToSend = Array.from(inputs).map(input => input.value);
+
+        // Пример отправки данных на сервер (контроллер) с использованием fetch
+        fetch('/your-controller-endpoint', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: dataToSend[0],
+                firstName: dataToSend[1],
+                lastName: dataToSend[2],
+                patronymic: dataToSend[3],
+                birthDate: dataToSend[4],
+                address: dataToSend[5],
+                languages: dataToSend[6],
+                info: dataToSend[7]
+            })
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Данные успешно сохранены!');
+                    // Обновить таблицу или выполнить другую логику после успешного сохранения
+                } else {
+                    alert('Ошибка при сохранении данных!');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибкa:', error);
+                alert('Сетевой запрос завершился неудачно.');
+            });
+    };
+</script>
+</body>
+</html>

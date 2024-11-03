@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
-
+@Entity
 @Table(name = "actions")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,26 +20,26 @@ public class Action {
 
     @Getter
     @Setter
-    @Column(name = "action_title")
-    private String actionTitle;
+    @Column(name = "action_name")
+    private String actionName;
 
     @Getter
     @Setter
-    @Column(name = "event_id")
-    private String eventId;
+    @Column(name = "action_start")
+    private LocalDate actionStart;
 
     @Getter
     @Setter
-    @Column(name = "start_date")
-    private LocalDate startDate;
-
-    @Getter
-    @Setter
-    @Column(name = "end_Date")
-    private String endDate;
+    @Column(name = "action_end")
+    private String actionEnd;
 
     @Getter
     @Setter
     @Column(name = "status")
-    private String Status;
+    private String status;
+
+    @Getter
+    @Setter
+    @Column(name = "events")
+    private String events;
 }

@@ -1,44 +1,124 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Медицинские Калькуляторы</title>-->
+<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
+<!--    <script src="js/bootstrap.bundle.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="text-center">-->
+<!--    <h1>Личный кабинет администратора</h1>-->
+<!--</div>-->
+<!--<section id="services">-->
+<!--    <div class="container" id="zayavkaTable">-->
+<!--        <h2>Поиск волонтеров</h2>-->
+<!--        <button style="float:left" type="submit" id="SendMail" class="btn btn-primary">Найти</button>-->
+<!--        <button style="float:left" type="reset" id="ResetMail" class="btn btn-primary">Очистить</button>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="mailInput" class="form-label"></label>-->
+<!--            <input type="email" id="mailInput" class="form-control" aria-describedby="mail">-->
+<!--            <div id="mail" class="form-control">-->
+<!--                Введите mail-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <table class="table" id="personalInfoTable">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th scope="col">#</th>-->
+<!--                <th scope="col">Действие</th>-->
+<!--                <th scope="col">События</th>-->
+<!--                <th scope="col">Мероприятие</th>-->
+<!--                <th scope="col">Имя</th>-->
+<!--                <th scope="col">Фамилия</th>-->
+<!--                <th scope="col">Отчество</th>-->
+<!--                <th scope="col">Email</th>-->
+<!--                <th scope="col">Дата рождения</th>-->
+<!--                <th scope="col">Пол</th>-->
+<!--                <th scope="col">Опыт</th>-->
+<!--                <th scope="col">Язык</th>-->
+<!--                <th scope="col">Краткая информация</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            &lt;!&ndash; Данные из базы данных будут добавляться сюда &ndash;&gt;-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+<!--</section>-->
+<!--<script>-->
+<!--    document.write("<script type='text/javascript' src='app/ShowPersonalInfo.js?v=" + Date.now() + "'><\/script>");-->
+<!--</script>-->
+<!--<script>-->
+<!--    // Пример добавления кнопок "Да" и "Нет" для каждого пользователя в таблице-->
+<!--    function addActionButtons(row) {-->
+<!--        const actionCell = row.insertCell(1); // Вставляем в 2-й столбец-->
+<!--        const yesButton = document.createElement('button');-->
+<!--        yesButton.textContent = 'Да';-->
+<!--        yesButton.className = 'btn btn-success btn-sm';-->
+<!--        yesButton.onclick = function() {-->
+<!--            // Логика обработки кнопки "Да"-->
+<!--            console.log('Выбрано: Да');-->
+<!--        };-->
+
+<!--        const noButton = document.createElement('button');-->
+<!--        noButton.textContent = 'Нет';-->
+<!--        noButton.className = 'btn btn-danger btn-sm';-->
+<!--        noButton.onclick = function() {-->
+<!--            // Логика обработки кнопки "Нет"-->
+<!--            console.log('Выбрано: Нет');-->
+<!--        };-->
+
+<!--        actionCell.appendChild(yesButton);-->
+<!--        actionCell.appendChild(noButton);-->
+<!--    }-->
+
+<!--    // Пример добавления данных (для теста)-->
+<!--    const tbody = document.querySelector('#personalInfoTable tbody');-->
+<!--    for (let i = 1; i <= 5; i++) {-->
+<!--        const row = tbody.insertRow();-->
+<!--        row.insertCell(0).textContent = i; // Номер-->
+<!--        addActionButtons(row); // Добавляем кнопки-->
+<!--        row.insertCell(2).textContent = 'Событие ' + i; // Пример данных-->
+<!--        row.insertCell(3).textContent = 'Мероприятие ' + i; // Пример данных-->
+<!--        // Остальные данные...-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <title><!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-        <meta http-equiv="Pragma" content="no-cache"/>
-        <meta http-equiv="Expires" content="0"/>
-        <title>Медицинские Калькуляторы</title>
+    <title>Медицинские Калькуляторы</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <div class="text-center">
-    <h1>Перед вами представлены Медицинские калькуляторы</h1>
+    <h1>Список событий</h1>
 </div>
 <section id="services">
     <div class="container" id="actionTable">
-        <h2>Виды калькуляторов</h2>
-        <table class="table">
+        <table class="table" id="actionInfoTable">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Имя волонтера</th>
-                <th scope="col">Email</th>
+                <th scope="col">Название события</th>
+                <th scope="col">Дата начала события</th>
+                <th scope="col">Дата конца события</th>
+                <th scope="col">Место проведения</th>
+                <th scope="col">Список мероприятий</th>
             </tr>
             </thead>
             <tbody>
-            <!-- Данные из базы данных будут добавляться сюда -->
             </tbody>
         </table>
-
     </div>
 </section>
-<script>document.write("<script type='text/javascript' src='app/ShowAllAction.js?v=" + Date.now() + "'><\/script>");</script>
+<script>
+    document.write("<script type='text/javascript' src='app/ShowPersonalInfo.js?v=" + Date.now() + "'><\/script>");
+</script>
 </body>
 </html>
+

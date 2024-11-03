@@ -41,3 +41,15 @@ form.addEventListener('submit', (event) => {
     }else{
         sendButton.click();}
 });
+
+function getLanguages(input) {
+    const trimmedInput = input.trim();
+    const languagesArray = trimmedInput.split(' ').filter(Boolean);
+
+    if (languagesArray.length === 0 || languagesArray.some(lang => lang.length === 0)) {
+        alert('Ошибка: введите список языков корректно.'); // Выдаёт предупреждение, если ввод неверный
+        return [];
+    }
+
+    return languagesArray;
+}
