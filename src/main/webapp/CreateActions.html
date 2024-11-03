@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>Вход</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<header th:fragment="head">
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div id="calc_input" class="col-8">
+            <h1 style="padding-left: 27%;">Создание события и заполнения данных по нему </h1>
+            <form name="form" id="form">
+                <div class="mb-3">
+                    <label for="actionNameInput" class="form-label">Название события</label>
+                    <input type="string" id="actionNameInput" class="form-control" aria-describedby="mail">
+                    <div id="action" class="form-control">
+                        Введите название события
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="actionStartInput" class="form-label">Дата начала</label>
+                    <input type="date" id="actionStartInput" class="form-control" aria-describedby="actionStart">
+                    <div id="actionStart" class="form-control">
+                        Введите дату начала события
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="actionEndInput" class="form-label">Дата конца</label>
+                    <input type="date" id="actionEndInput" class="form-control" aria-describedby="actionEnd">
+                    <div id="actionEnd" class="form-control">
+                        Введите дату конца события
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="actionStatusInput" class="form-label">Статус события</label>
+                    <select id="actionStatusInput" class="form-select" aria-describedby="actionStatus">
+                        <option value="" disabled selected>Выберите статус события</option>
+                        <option value="district">Районное</option>
+                        <option value="municipal">Муниципальное</option>
+                        <option value="city">Городское</option>
+                        <option value="regional">Областное</option>
+                        <option value="national">Всероссийское</option>
+                    </select>
+                    <div id="actionStatus" class="form-text">
+                        Выберите статус события из предложенного списка.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button style="float:left" type="submit" id="SaveActionInfo" class="btn btn-primary">Сохранить</button>
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<h1 id="result" class="details"></h1>
+
+<script>document.write("<script type='text/javascript' src='app/CreateAction.js?v=" + Date.now() + "'><\/script>");</script>
+</body>
+</html>

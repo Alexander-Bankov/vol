@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.math.BigInteger;
 import java.time.LocalDate;
 @Entity
-@Table(name = "actions")
+@Table(name = "action")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Action {

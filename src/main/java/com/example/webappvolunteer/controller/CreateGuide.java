@@ -5,6 +5,7 @@ import com.example.webappvolunteer.entity.GuideLanguage;
 import com.example.webappvolunteer.repository.UserRepository;
 import com.example.webappvolunteer.repository.guideRepository.GuideActionRepository;
 import com.example.webappvolunteer.repository.guideRepository.GuideLanguageRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +23,14 @@ public class CreateGuide {
         this.guideActionRepository = guideActionRepository;
     }
     @PostMapping("/language")
-    public void createLanguagesGuide(@RequestBody GuideLanguage guideLanguage){
+    public ResponseEntity createLanguagesGuide(@RequestBody GuideLanguage guideLanguage){
         guideLanguageRepository.save(guideLanguage);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/action")
-    public void createLanguagesGuide(@RequestBody GuideAction guideAction){
+    public ResponseEntity createLanguagesGuide(@RequestBody GuideAction guideAction){
         guideActionRepository.save(guideAction);
+        return ResponseEntity.ok().build();
     }
 }

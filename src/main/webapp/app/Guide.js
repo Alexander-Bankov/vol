@@ -68,9 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             actions.forEach(action => {
                 const actionElement = document.createElement('p');
-                actionElement.innerText = action.actionName; // Предполагается, что объект имеет это свойство
+                actionElement.innerText = action.actionName;
+                actionElement.classList.add('action-item', 'centered'); // Применяем класс centered
                 resultDiv.appendChild(actionElement);
-                actionElement.classList.add('action-item');
             });
         } catch (error) {
             console.error('Ошибка при получении событий:', error);
@@ -91,9 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             languages.forEach(language => {
                 const languageElement = document.createElement('p');
-                languageElement.innerText = language.languageName; // Предполагается, что объект имеет это свойство
+                languageElement.innerText = language.languageName;
+                languageElement.classList.add('language-item', 'centered'); // Применяем класс centered
                 resultDiv.appendChild(languageElement);
-                languageElement.classList.add('language-item');
             });
         } catch (error) {
             console.error('Ошибка при получении языков:', error);

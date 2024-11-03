@@ -18,3 +18,7 @@
 .spacer {
     margin-top: 1cm;
 }
+.centered {
+    text-align: center;
+    margin: 10px 0;
+}
