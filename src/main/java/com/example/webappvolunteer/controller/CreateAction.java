@@ -8,6 +8,8 @@ import com.example.webappvolunteer.repository.ActionRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,16 +47,24 @@ public class CreateAction {
     }
 
     @GetMapping("/actions")
-    public ResponseEntity<List<ActionInfoDto>> getAllEvents(@RequestParam("actionName") String actionName) {
-        // Получаем данные из репозитория
-        List<ActionInfoDto> actionInfoDtos = actionRepository.findActionInfoByActionName(actionName);
+    public ResponseEntity<List<ActionInfoDto>> getAllEvents(@RequestParam("actionName") String actionNames) {
+        List<Object[]> results = actionRepository.findActionInfoByActionName(actionNames);
+        List<ActionInfoDto> actionInfoDtos = new ArrayList<>();
 
-        // Проводим обработку для преобразования строк с названиями мероприятий в списки
-        for (ActionInfoDto dto : actionInfoDtos) {
-            dto.setEventNamesFromString(dto.getEventNames()); // Преобразуем строку в список
+        for (Object[] result : results) {
+            String actionName = (String) result[0];
+            // Преобразуем java.sql.Date в LocalDate
+            LocalDate actionStart = ((java.sql.Date) result[1]).toLocalDate();
+            LocalDate actionEnd = ((java.sql.Date) result[2]).toLocalDate();
+            String status = (String) result[3];
+            String eventNames = (String) result[4];
+
+            ActionInfoDto dto = new ActionInfoDto(actionName, actionStart, actionEnd, status, null);
+            dto.setEventNamesFromString(eventNames); // Преобразуем строку в список
+            actionInfoDtos.add(dto);
         }
 
-        // Возвращаем ResponseEntity с найденными данными
         return ResponseEntity.ok(actionInfoDtos);
     }
+
 }

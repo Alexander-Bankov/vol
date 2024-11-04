@@ -21,5 +21,6 @@ public interface ActionRepository extends JpaRepository<Action, Long> {
                    "WHERE a.action_name = :name " +
                    "GROUP BY a.action_name, a.action_start, a.action_end, a.status",
             nativeQuery = true)
-    List<ActionInfoDto> findActionInfoByActionName(String name);
+    List<Object[]> findActionInfoByActionName(String name);
+
 }

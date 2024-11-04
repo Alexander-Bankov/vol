@@ -24,7 +24,7 @@ public class ActionInfoDto {
 
     @Getter
     @Setter
-    private String actionEnd;
+    private LocalDate actionEnd;
 
     @Getter
     @Setter
@@ -44,5 +44,13 @@ public class ActionInfoDto {
     // Дополнительно, если нужен метод для получения eventNames в виде строки
     public String getEventNames() {
         return String.join(", ", eventName); // Объединяем названия мероприятий в строку
+    }
+
+    public ActionInfoDto(String actionName, LocalDate actionStart, LocalDate actionEnd, String status, List<String> eventName) {
+        this.actionName = actionName;
+        this.actionStart = actionStart;
+        this.actionEnd = actionEnd;
+        this.status = status;
+        this.eventName = eventName;
     }
 }

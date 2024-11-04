@@ -34,7 +34,7 @@ public class Action implements Serializable {
     @Getter
     @Setter
     @Column(name = "action_end")
-    private String actionEnd;
+    private LocalDate actionEnd;
 
     @Getter
     @Setter
