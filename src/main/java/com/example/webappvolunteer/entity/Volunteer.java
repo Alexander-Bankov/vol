@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "volunteers")
+@Table(name = "volunteer")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Volunteer {

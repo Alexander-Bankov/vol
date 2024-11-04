@@ -99,6 +99,16 @@
     <h1>Список событий</h1>
 </div>
 <section id="services">
+    <div class="mb-3">
+        <label for="actionNameInput" class="form-label">Название события</label>
+        <select id="actionNameInput" class="form-select" aria-describedby="actionName">
+            <option value="" disabled selected>Выберите название события</option>
+        </select>
+        <div id="actionName" class="form-text">
+            Выберите название события из предложенного списка.
+        </div>
+    </div>
+    <button class="btn btn-primary" id="showEvents">Показать</button>
     <div class="container" id="actionTable">
         <table class="table" id="actionInfoTable">
             <thead>

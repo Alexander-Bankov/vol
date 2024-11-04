@@ -6,13 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.util.List;
+
 @Entity
 @Table(name = "action")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Action {
+public class Action implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "action_id")
@@ -38,8 +41,4 @@ public class Action {
     @Column(name = "status")
     private String status;
 
-    @Getter
-    @Setter
-    @Column(name = "events")
-    private String events;
 }

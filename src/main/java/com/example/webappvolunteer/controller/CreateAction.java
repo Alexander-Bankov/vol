@@ -1,13 +1,15 @@
 package com.example.webappvolunteer.controller;
 
 
+import com.example.webappvolunteer.dto.ActionInfoDto;
+import com.example.webappvolunteer.dto.EventInfoDto;
 import com.example.webappvolunteer.entity.Action;
 import com.example.webappvolunteer.repository.ActionRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/create-action")
@@ -21,7 +23,6 @@ public class CreateAction {
     @PostMapping("/full-action")
     public ResponseEntity createAction(@RequestBody Action createAction) {
         try {
-            createAction.setEvents(null);
             actionRepository.save(createAction);
             return ResponseEntity.ok().build();
         }
@@ -34,7 +35,6 @@ public class CreateAction {
     @PostMapping("/update-action")
     public ResponseEntity updateAction(@RequestBody Action createAction) {
         try {
-            createAction.setEvents(null);
             actionRepository.save(createAction);
             return ResponseEntity.ok().build();
         }
@@ -42,5 +42,19 @@ public class CreateAction {
             e.printStackTrace();
             return ResponseEntity.status(500).build();
         }
+    }
+
+    @GetMapping("/actions")
+    public ResponseEntity<List<ActionInfoDto>> getAllEvents(@RequestParam("actionName") String actionName) {
+        // Получаем данные из репозитория
+        List<ActionInfoDto> actionInfoDtos = actionRepository.findActionInfoByActionName(actionName);
+
+        // Проводим обработку для преобразования строк с названиями мероприятий в списки
+        for (ActionInfoDto dto : actionInfoDtos) {
+            dto.setEventNamesFromString(dto.getEventNames()); // Преобразуем строку в список
+        }
+
+        // Возвращаем ResponseEntity с найденными данными
+        return ResponseEntity.ok(actionInfoDtos);
     }
 }

@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <title>Вход</title>
+    <title>События</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -22,9 +22,11 @@
             <form name="form" id="form">
                 <div class="mb-3">
                     <label for="actionNameInput" class="form-label">Название события</label>
-                    <input type="string" id="actionNameInput" class="form-control" aria-describedby="mail">
-                    <div id="action" class="form-control">
-                        Введите название события
+                    <select id="actionNameInput" class="form-select" aria-describedby="actionName">
+                        <option value="" disabled selected>Выберите название события</option>
+                    </select>
+                    <div id="actionName" class="form-text">
+                        Выберите название события из предложенного списка.
                     </div>
                 </div>
 

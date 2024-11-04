@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>Мероприятия</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<header th:fragment="head">
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div id="calc_input" class="col-8">
+            <h1 style="padding-left: 27%;">Создание мероприятия и заполнения данных по нему </h1>
+            <form name="form" id="form">
+                <div class="mb-3">
+                    <label for="actionNameInput" class="form-label">Название события</label>
+                    <select id="actionNameInput" class="form-select" aria-describedby="actionName">
+                        <option value="" disabled selected>Выберите название события</option>
+                    </select>
+                    <div id="actionName" class="form-text">
+                        Выберите название события из предложенного списка.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="eventNameInput" class="form-label">Название мероприятия</label>
+                    <input type="string" id="eventNameInput" class="form-control" aria-describedby="event">
+                    <div id="event" class="form-control">
+                        Введите название мероприятия
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="eventStartInput" class="form-label">Дата и время начала</label>
+                    <input type="datetime-local" id="eventStartInput" class="form-control" aria-describedby="eventStart">
+                    <div id="eventStart" class="form-control">
+                        Введите дату и время начала мероприятия
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="eventEndInput" class="form-label">Дата и время конца</label>
+                    <input type="datetime-local" id="eventEndInput" class="form-control" aria-describedby="eventEnd">
+                    <div id="eventEnd" class="form-control">
+                        Введите дату и время конца мероприятия
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="placeInput" class="form-label">Место проведения</label>
+                    <input type="integer" id="placeInput" class="form-control" aria-describedby="place">
+                    <div id="place" class="form-control">
+                        Введите место проведения
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="maxCountVolunteerInput" class="form-label">Максимальное количество волонтеров</label>
+                    <input type="integer" id="maxCountVolunteerInput" class="form-control" aria-describedby="maxCountVolunteer">
+                    <div id="maxCountVolunteer" class="form-control">
+                        Введите максимальное количество волонтеров
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button style="float:left" type="submit" id="SaveEventInfo" class="btn btn-primary">Сохранить</button>
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<h1 id="result" class="details"></h1>
+
+<script>document.write("<script type='text/javascript' src='app/CreateEvent.js?v=" + Date.now() + "'><\/script>");</script>
+</body>
+</html>

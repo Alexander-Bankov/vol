@@ -7,14 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "events")
+@Table(name = "event")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Event {
+public class Event implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "event_id")
@@ -22,26 +24,44 @@ public class Event {
 
     @Getter
     @Setter
-    @Column(name = "event_title")
-    private String eventTitle;
+    @Column(name = "event_name")
+    private String eventName;
 
     @Getter
     @Setter
-    @Column(name = "event_place")
-    private String eventPlace;
+    @Column(name = "place")
+    private String place;
 
     @Getter
     @Setter
-    @Column(name = "start_time")
-    private LocalDate startTime;
+    @Column(name = "date_and_time_start")
+    private LocalDateTime startTime;
 
     @Getter
     @Setter
-    @Column(name = "end_time")
-    private String endTime;
+    @Column(name = "date_and_time_end")
+    private LocalDateTime endTime;
 
     @Getter
     @Setter
     @Column(name = "volunteer_count")
-    private String volunteerCount;
+    private Integer volunteerCount;
+
+    @Getter
+    @Setter
+    @Column(name = "max_volunteer_count")
+    private Integer maxVolunteerCount;
+
+    @Getter
+    @Setter
+    @Column(name = "actionName")
+    private String actionName;
+
+    @Getter
+    @Setter
+    @ManyToOne(cascade = CascadeType.ALL) // Каскадное удаление
+    @JoinColumn(name = "action_id", referencedColumnName = "action_id", nullable = false)
+    private Action action; // Ссылка на сущность Action
+
+
 }
