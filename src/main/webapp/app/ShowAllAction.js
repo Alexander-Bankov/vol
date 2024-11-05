@@ -26,9 +26,70 @@ async function loadActions() {
     }
 }
 
-// Вызываем функцию при загрузке страницы
-document.addEventListener("DOMContentLoaded", loadActions);
+// Функция для загрузки всех действий из нового эндпоинта
+async function loadAllActions(sortOption = null) {
+    const tbody = document.querySelector('#actionInfoTable tbody');
+    tbody.innerHTML = ''; // Очистка текущего содержимого таблицы
 
+    try {
+        let url = '/create-action/all-actions';
+        if (sortOption) {
+            url = `/create-action/sorted-actions?nameSorted=${sortOption}`; // Запрос с сортировкой
+        }
+
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Ошибка сети: ' + response.statusText);
+        }
+
+        const actionInfo = await response.json();
+
+        console.log('Полученные данные:', actionInfo); // Логирование полученных данных
+
+        // Проверка, что данные возвращаются и имеют правильную структуру
+        if (Array.isArray(actionInfo) && actionInfo.length > 0) {
+            actionInfo.forEach((action, index) => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = index + 1; // Номер
+                row.insertCell(1).textContent = action.actionName; // Название события
+                row.insertCell(2).textContent = action.actionStart; // Дата начала события
+                row.insertCell(3).textContent = action.actionEnd; // Дата конца события
+                row.insertCell(4).textContent = action.status; // Статус события
+
+                // Проверяем, что eventNames существует и не пуст
+                if (action.eventNames) {
+                    const eventNamesArray = action.eventNames.split(',').map(name => name.trim());
+                    row.insertCell(5).textContent = eventNamesArray.join(', '); // Список мероприятий
+                } else {
+                    row.insertCell(5).textContent = 'Нет мероприятий'; // Если нет мероприятий
+                }
+            });
+        } else {
+            tbody.insertRow().insertCell(0).textContent = 'Нет данных для отображения.';
+        }
+
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+        alert('Не удалось загрузить данные, пожалуйста, попробуйте позже.');
+    }
+}
+
+// Функция для получения выбранного параметра сортировки
+function getSelectedSortOption() {
+    const sortOptions = document.querySelectorAll('input[name="sortOptions"]');
+    for (let option of sortOptions) {
+        if (option.checked) {
+            return option.value; // Вернуть значение проверенного радиобаттона
+        }
+    }
+    return null; // Если ни один не выбран
+}
+
+// Вызываем функции при загрузке страницы
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadActions(); // Загружаем названия событий в выпадающее меню
+    await loadAllActions(); // Загружаем все действия в таблицу
+});
 
 document.getElementById('showActions').addEventListener('click', async function() {
     const select = document.getElementById('actionNameInput');
@@ -81,4 +142,10 @@ document.getElementById('showActions').addEventListener('click', async function(
     }
 });
 
-
+// Добавляем обработчик для сортировки
+document.querySelectorAll('input[name="sortOptions"]').forEach(input => {
+    input.addEventListener('change', async function() {
+        const sortOption = getSelectedSortOption(); // Получаем выбранное значение
+        await loadAllActions(sortOption); // Загружаем отсортированные действия
+    });
+});

@@ -1,91 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Медицинские Калькуляторы</title>-->
-<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
-<!--    <script src="js/bootstrap.bundle.min.js"></script>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="text-center">-->
-<!--    <h1>Личный кабинет администратора</h1>-->
-<!--</div>-->
-<!--<section id="services">-->
-<!--    <div class="container" id="zayavkaTable">-->
-<!--        <h2>Поиск волонтеров</h2>-->
-<!--        <button style="float:left" type="submit" id="SendMail" class="btn btn-primary">Найти</button>-->
-<!--        <button style="float:left" type="reset" id="ResetMail" class="btn btn-primary">Очистить</button>-->
-<!--        <div class="mb-3">-->
-<!--            <label for="mailInput" class="form-label"></label>-->
-<!--            <input type="email" id="mailInput" class="form-control" aria-describedby="mail">-->
-<!--            <div id="mail" class="form-control">-->
-<!--                Введите mail-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <table class="table" id="personalInfoTable">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th scope="col">#</th>-->
-<!--                <th scope="col">Действие</th>-->
-<!--                <th scope="col">События</th>-->
-<!--                <th scope="col">Мероприятие</th>-->
-<!--                <th scope="col">Имя</th>-->
-<!--                <th scope="col">Фамилия</th>-->
-<!--                <th scope="col">Отчество</th>-->
-<!--                <th scope="col">Email</th>-->
-<!--                <th scope="col">Дата рождения</th>-->
-<!--                <th scope="col">Пол</th>-->
-<!--                <th scope="col">Опыт</th>-->
-<!--                <th scope="col">Язык</th>-->
-<!--                <th scope="col">Краткая информация</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            &lt;!&ndash; Данные из базы данных будут добавляться сюда &ndash;&gt;-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--</section>-->
-<!--<script>-->
-<!--    document.write("<script type='text/javascript' src='app/ShowPersonalInfo.js?v=" + Date.now() + "'><\/script>");-->
-<!--</script>-->
-<!--<script>-->
-<!--    // Пример добавления кнопок "Да" и "Нет" для каждого пользователя в таблице-->
-<!--    function addActionButtons(row) {-->
-<!--        const actionCell = row.insertCell(1); // Вставляем в 2-й столбец-->
-<!--        const yesButton = document.createElement('button');-->
-<!--        yesButton.textContent = 'Да';-->
-<!--        yesButton.className = 'btn btn-success btn-sm';-->
-<!--        yesButton.onclick = function() {-->
-<!--            // Логика обработки кнопки "Да"-->
-<!--            console.log('Выбрано: Да');-->
-<!--        };-->
-
-<!--        const noButton = document.createElement('button');-->
-<!--        noButton.textContent = 'Нет';-->
-<!--        noButton.className = 'btn btn-danger btn-sm';-->
-<!--        noButton.onclick = function() {-->
-<!--            // Логика обработки кнопки "Нет"-->
-<!--            console.log('Выбрано: Нет');-->
-<!--        };-->
-
-<!--        actionCell.appendChild(yesButton);-->
-<!--        actionCell.appendChild(noButton);-->
-<!--    }-->
-
-<!--    // Пример добавления данных (для теста)-->
-<!--    const tbody = document.querySelector('#personalInfoTable tbody');-->
-<!--    for (let i = 1; i <= 5; i++) {-->
-<!--        const row = tbody.insertRow();-->
-<!--        row.insertCell(0).textContent = i; // Номер-->
-<!--        addActionButtons(row); // Добавляем кнопки-->
-<!--        row.insertCell(2).textContent = 'Событие ' + i; // Пример данных-->
-<!--        row.insertCell(3).textContent = 'Мероприятие ' + i; // Пример данных-->
-<!--        // Остальные данные...-->
-<!--    }-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,6 +21,23 @@
         </div>
     </div>
     <button class="btn btn-primary" id="showActions">Показать</button>
+
+    <div class="mb-3">
+        <h4>Сортировка:</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortOptions" id="sortByDate" value="date">
+            <label class="form-check-label" for="sortByDate">По дате</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortOptions" id="sortByStatus" value="status">
+            <label class="form-check-label" for="sortByStatus">По статусу</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortOptions" id="sortByName" value="name">
+            <label class="form-check-label" for="sortByName">По названию</label>
+        </div>
+    </div>
+
     <div class="container" id="actionTable">
         <table class="table" id="actionInfoTable">
             <thead>
@@ -131,4 +60,3 @@
 </script>
 </body>
 </html>
-
