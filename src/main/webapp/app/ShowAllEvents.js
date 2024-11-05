@@ -37,7 +37,12 @@ document.getElementById('showEvents').addEventListener('click', function () {
         return;
     }
 
-    fetch(`/create-event/events?actionName=${encodeURIComponent(actionName)}`)
+    // Определяем выбранный тип сортировки
+    const sortOrder = document.querySelector('input[name="sortOrder"]:checked');
+    const sortType = sortOrder ? sortOrder.value : 'default';  // Используем 'default', если сортировка не выбрана
+
+    // Запрос к контроллеру с учетом выбранной сортировки
+    fetch(`/create-event/sorted-events?nameAction=${encodeURIComponent(actionName)}&nameSorted=${encodeURIComponent(sortType)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Сеть не доступна');
@@ -67,4 +72,13 @@ document.getElementById('showEvents').addEventListener('click', function () {
             console.error('Ошибка:', error);
             alert('Ошибка при получении данных о мероприятиях.');
         });
+});
+
+// Обработчик событий для радиокнопок сортировки
+const sortButtons = document.querySelectorAll('input[name="sortOrder"]');
+sortButtons.forEach(button => {
+    button.addEventListener('change', function () {
+        // При изменении порядка сортировки вызываем функцию показа мероприятий
+        document.getElementById('showEvents').click();
+    });
 });

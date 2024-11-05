@@ -1,5 +1,6 @@
 package com.example.webappvolunteer.controller;
 
+import com.example.webappvolunteer.dto.ActionInfoDto;
 import com.example.webappvolunteer.dto.EventInfoDto;
 import com.example.webappvolunteer.entity.Action;
 import com.example.webappvolunteer.entity.Event;
@@ -10,8 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -71,5 +74,38 @@ public class CreateEvent {
         return ResponseEntity.ok(eventInfoDtos);
     }
 
+    @GetMapping("/sorted-events")
+    public ResponseEntity<List<EventInfoDto>> getSortedEvents(@RequestParam String nameSorted, @RequestParam String nameAction) {
+        List<Object[]> results;
+
+        switch (nameSorted) {
+            case "name":
+                results = eventRepository.eventSortedByNameAsc(nameAction);
+                break;
+            case "volCount":
+                results = eventRepository.eventSortedByMaxVolunteerCountDesc(nameAction);
+                break;
+            case "date":
+                results = eventRepository.eventSortedByStartDateDesc(nameAction);
+                break;
+            default:
+                results = eventRepository.findEventsByActionName(nameAction);
+                break;
+        }
+
+        List<EventInfoDto> eventInfoDtos = results.stream()
+                .map(result -> new EventInfoDto(
+                        (String) result[0], // eventName
+                        (String) result[1], // actionName
+                        (String) result[2], // place
+                        ((java.sql.Timestamp) result[3]).toLocalDateTime(), // startTime
+                        ((java.sql.Timestamp) result[4]).toLocalDateTime(), // endTime
+                        (Integer) result[5], // volunteerCount
+                        (Integer) result[6]  // maxVolunteerCount
+                ))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(eventInfoDtos);
+    }
 
 }

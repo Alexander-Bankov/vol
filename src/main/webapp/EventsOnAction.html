@@ -22,6 +22,17 @@
                 Выберите название события из предложенного списка.
             </div>
         </div>
+
+        <div class="mb-3">
+            <label>Сортировка:</label><br/>
+            <input type="radio" id="sortByName" name="sortOrder" value="name">
+            <label for="sortByName">По названию</label><br/>
+            <input type="radio" id="sortByDate" name="sortOrder" value="date">
+            <label for="sortByDate">По дате</label><br/>
+            <input type="radio" id="sortByVolunteers" name="sortOrder" value="volCount">
+            <label for="sortByVolunteers">По максимальному количеству волонтеров</label>
+        </div>
+
         <button class="btn btn-primary" id="showEvents">Показать</button>
 
         <table class="table mt-4" id="eventInfoTable">

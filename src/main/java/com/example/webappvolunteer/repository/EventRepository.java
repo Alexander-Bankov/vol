@@ -19,4 +19,20 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +
                     "FROM event e WHERE e.action_name = :name")
     List<Object[]> findEventsByActionName(@Param("name") String name);
+
+    @Query(nativeQuery = true,
+            value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +
+                    "FROM event e WHERE e.action_name = :name ORDER BY e.date_and_time_start DESC")
+    List<Object[]> eventSortedByStartDateDesc(@Param("name") String name);
+
+    @Query(nativeQuery = true,
+            value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +
+                    "FROM event e WHERE e.action_name = :name ORDER BY e.event_name ASC")
+    List<Object[]> eventSortedByNameAsc(@Param("name") String name);
+
+    @Query(nativeQuery = true,
+            value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +
+                    "FROM event e WHERE e.action_name = :name ORDER BY e.max_volunteer_count DESC")
+    List<Object[]> eventSortedByMaxVolunteerCountDesc(@Param("name") String name);
+
 }
