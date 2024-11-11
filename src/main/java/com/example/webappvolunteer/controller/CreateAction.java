@@ -1,6 +1,7 @@
 package com.example.webappvolunteer.controller;
 
 
+import com.example.webappvolunteer.dto.ActionFilterDto;
 import com.example.webappvolunteer.dto.ActionInfoDto;
 import com.example.webappvolunteer.dto.EventInfoDto;
 import com.example.webappvolunteer.entity.Action;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,41 +86,10 @@ public class CreateAction {
         return ResponseEntity.ok(actionInfoDtos);
     }
 
-    @GetMapping("/sorted-actions")
-    public ResponseEntity<List<ActionInfoDto>> getSortedActions(@RequestParam String nameSorted) {
-        List<Object[]> results = null;
 
-        switch (nameSorted) {
-            case "name":
-                results = actionRepository.getSortedByName();
-                break;
-            case "status":
-                results = actionRepository.getSortedByStatus();
-                break;
-            case "date":
-                results = actionRepository.getSortedByDate();
-                break;
-            default:
-                results = actionRepository.getAllACtion(); // Возвращаем все действия по умолчанию
-                break;
-        }
 
-        List<ActionInfoDto> actionInfoDtos = new ArrayList<>();
-        if (results != null) {
-            for (Object[] result : results) {
-                String actionName = (String) result[0];
-                // Преобразуем java.sql.Date в LocalDate
-                LocalDate actionStart = ((java.sql.Date) result[1]).toLocalDate();
-                LocalDate actionEnd = ((java.sql.Date) result[2]).toLocalDate();
-                String status = (String) result[3];
-                String eventNames = (String) result[4];
-                ActionInfoDto dto = new ActionInfoDto(actionName, actionStart, actionEnd, status, null);
-                dto.setEventNamesFromString(eventNames); // Преобразуем строку в список
-                actionInfoDtos.add(dto);
-            }
-        }
-        return ResponseEntity.ok(actionInfoDtos);
-    }
+
+
 
 
 }

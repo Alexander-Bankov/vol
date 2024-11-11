@@ -34,7 +34,7 @@ async function loadAllActions(sortOption = null) {
     try {
         let url = '/create-action/all-actions';
         if (sortOption) {
-            url = `/create-action/sorted-actions?nameSorted=${sortOption}`; // Запрос с сортировкой
+            url = `sorted/actions?nameSorted=${sortOption}`; // Запрос с сортировкой
         }
 
         const response = await fetch(url);
@@ -148,4 +148,68 @@ document.querySelectorAll('input[name="sortOptions"]').forEach(input => {
         const sortOption = getSelectedSortOption(); // Получаем выбранное значение
         await loadAllActions(sortOption); // Загружаем отсортированные действия
     });
+});
+const resetButton = document.querySelector('#Reset');
+resetButton.addEventListener('click', function () {
+    location.reload(); // перезагрузка страницы
+});
+
+document.getElementById('applyFilters').addEventListener('click', async function() {
+    const startDate = document.getElementById('startDateInput').value;
+    const endDate = document.getElementById('endDateInput').value;
+    const status = document.getElementById('statusSelect').value;
+
+    const tbody = document.querySelector('#actionInfoTable tbody');
+    tbody.innerHTML = ''; // Очистка текущего содержимого таблицы
+
+    try {
+        let url = '';
+        let params = '';
+
+        // Проверяем, какой фильтр выбран и формируем запрос
+        if (status) {
+            url = '/filter/status-actions';
+            params = `?status=${encodeURIComponent(status)}`;
+        } else if (startDate && endDate) {
+            url = '/filter/date-actions';
+            params = `?dateStart=${encodeURIComponent(startDate)}&dateEnd=${encodeURIComponent(endDate)}`;
+        } else {
+            alert('Пожалуйста, выберите один фильтр для применения.');
+            return;
+        }
+
+        const response = await fetch(url + params);
+        if (!response.ok) {
+            throw new Error('Ошибка сети: ' + response.statusText);
+        }
+
+        const actionInfo = await response.json();
+        console.log('Полученные данные после фильтрации:', actionInfo); // Логирование полученных данных
+
+        // Проверка, что данные возвращаются и имеют правильную структуру
+        if (Array.isArray(actionInfo) && actionInfo.length > 0) {
+            actionInfo.forEach((action, index) => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = index + 1; // Номер
+                row.insertCell(1).textContent = action.actionName; // Название события
+                row.insertCell(2).textContent = action.actionStart; // Дата начала события
+                row.insertCell(3).textContent = action.actionEnd; // Дата конца события
+                row.insertCell(4).textContent = action.status; // Статус события
+
+                // Проверяем, что eventNames существует и не пуст
+                if (action.eventNames) {
+                    const eventNamesArray = action.eventNames.split(',').map(name => name.trim());
+                    row.insertCell(5).textContent = eventNamesArray.join(', '); // Список мероприятий
+                } else {
+                    row.insertCell(5).textContent = 'Нет мероприятий'; // Если нет мероприятий
+                }
+            });
+        } else {
+            tbody.insertRow().insertCell(0).textContent = 'Нет данных для отображения.';
+        }
+
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+        alert('Не удалось загрузить данные, пожалуйста, попробуйте позже.');
+    }
 });

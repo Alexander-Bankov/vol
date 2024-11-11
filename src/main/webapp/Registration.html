@@ -2,17 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-        <meta http-equiv="Pragma" content="no-cache"/>
-        <meta http-equiv="Expires" content="0"/>
-        <title>Регистрация пользователя</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Подключите Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Подключите Bootstrap Select CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+    <!-- Подключите JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Подключите Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Подключите Bootstrap Select JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
 </head>
 <body>
 <header th:fragment="head">
@@ -81,10 +90,12 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="mailInput" class="form-label">ЯЗЫКИ</label>
-                    <input type="String" id="languageInput" class="form-control" aria-describedby="language" onchange="getLanguages(this)">
-                    <div id="language" class="form-control">
-                        введите список языков, которыми владеете через один пробел
+                    <label for="languageInput" class="form-label">ЯЗЫКИ</label>
+                    <select id="languageInput" class="form-control selectpicker" multiple data-live-search="true">
+                        <!-- Опции будут добавлены динамически через JavaScript -->
+                    </select>
+                    <div id="languageHelp" class="form-text">
+                        Выберите языки, которыми владеете.
                     </div>
                 </div>
                 <div class="mb-3">
@@ -109,7 +120,7 @@
 <h1 id="result" class="details"></h1>
 
 
-<script>document.write("<script type='text/javascript' src='app/registration.js?v=" + Date.now() + "'><\/script>");</script>
+<script>document.write("<script type='text/javascript' src='app/Registration.js?v=" + Date.now() + "'><\/script>");</script>
 </body>
 </html></title>
 </head>

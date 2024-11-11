@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,6 +63,29 @@ public interface ActionRepository extends JpaRepository<Action, Long> {
                    "GROUP BY a.action_name, a.action_start, a.action_end, a.status ",
             nativeQuery = true)
     List<Object[]> getAllACtion();
+
+
+    @Query(value = "SELECT a.action_name, a.action_start, a.action_end, a.status, " +
+                   "STRING_AGG(e.event_name, ', ') AS event_names " +
+                   "FROM action a " +
+                   "JOIN event e ON a.action_id = e.action_id " +
+                   "WHERE a.status = :status " +
+                   "GROUP BY a.action_name, a.action_start, a.action_end, a.status " +
+                   "ORDER BY a.action_name DESC",
+            nativeQuery = true)
+    List<Object[]> filterStatus(@Param("status") String status);
+
+    @Query(value = "SELECT a.action_name, a.action_start, a.action_end, a.status, " +
+                   "STRING_AGG(e.event_name, ', ') AS event_names " +
+                   "FROM action a " +
+                   "JOIN event e ON a.action_id = e.action_id " +
+                   "WHERE a.action_start BETWEEN :startDate AND :endDate " +
+                   "GROUP BY a.action_name, a.action_start, a.action_end, a.status " +
+                   "ORDER BY a.action_start DESC",
+            nativeQuery = true)
+    List<Object[]> filterDateRange(@Param("startDate") LocalDate startDate,
+                                                          @Param("endDate") LocalDate endDate);
+
 
 
 }

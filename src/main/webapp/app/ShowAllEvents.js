@@ -38,11 +38,11 @@ document.getElementById('showEvents').addEventListener('click', function () {
     }
 
     // Определяем выбранный тип сортировки
-    const sortOrder = document.querySelector('input[name="sortOrder"]:checked');
+    const sortOrder = document.querySelector('input[name="sortOptions"]:checked'); // Изменение здесь
     const sortType = sortOrder ? sortOrder.value : 'default';  // Используем 'default', если сортировка не выбрана
 
     // Запрос к контроллеру с учетом выбранной сортировки
-    fetch(`/create-event/sorted-events?nameAction=${encodeURIComponent(actionName)}&nameSorted=${encodeURIComponent(sortType)}`)
+    fetch(`/sorted/events?nameAction=${encodeURIComponent(actionName)}&nameSorted=${encodeURIComponent(sortType)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Сеть не доступна');
@@ -75,10 +75,80 @@ document.getElementById('showEvents').addEventListener('click', function () {
 });
 
 // Обработчик событий для радиокнопок сортировки
-const sortButtons = document.querySelectorAll('input[name="sortOrder"]');
+const sortButtons = document.querySelectorAll('input[name="sortOptions"]'); // Изменение здесь
 sortButtons.forEach(button => {
     button.addEventListener('change', function () {
         // При изменении порядка сортировки вызываем функцию показа мероприятий
         document.getElementById('showEvents').click();
     });
 });
+
+const resetButton = document.querySelector('#Reset');
+resetButton.addEventListener('click', function () {
+    location.reload(); // перезагрузка страницы
+});
+
+
+
+document.getElementById('applyFilters').addEventListener('click', async function() {
+    const startDate = document.getElementById('startDateInput').value;
+    const endDate = document.getElementById('endDateInput').value;
+    const maxVolunteerCount = document.getElementById('maxVolunteersInput').value;
+    const actionName = document.getElementById('actionNameInput').value;
+
+    const tbody = document.querySelector('#eventInfoTable tbody');
+    tbody.innerHTML = ''; // Очистка текущего содержимого таблицы перед заполнением
+
+    try {
+        let url = '';
+        let params = '';
+
+        // Проверяем, какой фильтр выбран и формируем запрос
+        if (maxVolunteerCount) {
+            url = '/filter/max-vol-count-events';
+            params = `?actionName=${encodeURIComponent(actionName)}&maxVolCount=${encodeURIComponent(maxVolunteerCount)}`;
+        } else if (startDate && endDate) {
+            url = '/filter/date-events';
+            params = `?actionName=${encodeURIComponent(actionName)}&dateStart=${encodeURIComponent(startDate)}&dateEnd=${encodeURIComponent(endDate)}`;
+        } else {
+            alert('Пожалуйста, выберите один фильтр для применения.');
+            return;
+        }
+
+        const response = await fetch(url + params);
+        if (!response.ok) {
+            throw new Error('Ошибка сети: ' + response.statusText);
+        }
+
+        const actionInfo = await response.json();
+        console.log('Полученные данные после фильтрации:', actionInfo); // Логирование полученных данных
+
+        // Проверка, что данные возвращаются и имеют правильную структуру
+        if (Array.isArray(actionInfo) && actionInfo.length > 0) {
+            actionInfo.forEach((event, index) => { // Обратите внимание на "actionInfo", это исправление
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${event.eventName}</td>
+                    <td>${event.actionName}</td>
+                    <td>${event.place}</td>
+                    <td>${event.startTime}</td>
+                    <td>${event.endTime}</td>
+                    <td>${event.volunteerCount}</td>
+                    <td>${event.maxVolunteerCount}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        } else {
+            tbody.insertRow().insertCell(0).textContent = 'Нет данных для отображения.';
+        }
+
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+        alert('Не удалось загрузить данные, пожалуйста, попробуйте позже.');
+    }
+});
+
+
+
+

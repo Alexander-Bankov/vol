@@ -7,6 +7,8 @@
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<button class="btn btn-primary mt-1" id="Reverse">Вернуться в личный кабинет</button>
+
 <div class="text-center">
     <h1>Список мероприятий</h1>
 </div>
@@ -22,18 +24,43 @@
                 Выберите название события из предложенного списка.
             </div>
         </div>
+        <button class="btn btn-primary" id="showEvents">Показать</button>
 
         <div class="mb-3">
-            <label>Сортировка:</label><br/>
-            <input type="radio" id="sortByName" name="sortOrder" value="name">
-            <label for="sortByName">По названию</label><br/>
-            <input type="radio" id="sortByDate" name="sortOrder" value="date">
-            <label for="sortByDate">По дате</label><br/>
-            <input type="radio" id="sortByVolunteers" name="sortOrder" value="volCount">
-            <label for="sortByVolunteers">По максимальному количеству волонтеров</label>
+            <h4>Сортировка:</h4>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sortOptions" id="sortByDate" value="date">
+                <label class="form-check-label" for="sortByDate">По дате</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sortOptions" id="sortByVolunteers" value="volCount">
+                <label class="form-check-label" for="sortByVolunteers">По максимальному количеству волонтеров</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sortOptions" id="sortByName" value="name">
+                <label class="form-check-label" for="sortByName">По названию</label>
+            </div>
         </div>
 
-        <button class="btn btn-primary" id="showEvents">Показать</button>
+
+        <!-- Фильтры -->
+        <div class="mb-3">
+            <label for="startDateInput" class="form-label">Дата начала</label>
+            <input type="date" id="startDateInput" class="form-control">
+
+            <label for="endDateInput" class="form-label">Дата конца</label>
+            <input type="date" id="endDateInput" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="maxVolunteersInput" class="form-label">Максимальное количество волонтеров</label>
+            <input type="number" id="maxVolunteersInput" class="form-control" min="0">
+        </div>
+
+        <button class="btn btn-primary" id="applyFilters">Применить фильтры</button>
+        <button class="btn btn-primary" id="Reset">Очистить</button>
+
+
 
         <table class="table mt-4" id="eventInfoTable">
             <thead>
