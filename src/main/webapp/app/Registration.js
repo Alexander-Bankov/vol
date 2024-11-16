@@ -283,6 +283,8 @@ document.getElementById('form').addEventListener('submit', function(event) {
         .then(data => {
             // Обработка успешного ответа
             document.getElementById("result").textContent = data;
+            // Перенаправление на страницу авторизации
+            window.location.href = 'Authorization.html';
         })
         .catch((error) => {
             // Обработка ошибок
