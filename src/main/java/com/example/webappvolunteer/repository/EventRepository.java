@@ -16,6 +16,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT a.actionId FROM Action a WHERE a.actionName = :name")
     Optional<Long> findActionIdByName(@Param("name") String name);
 
+    @Query("SELECT v.eventId FROM Event v WHERE v.eventName = :name")
+    Optional<Long> findEventIdByName(String name);
+
     @Query(nativeQuery = true,
             value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +
                     "FROM event e WHERE e.action_name = :name")

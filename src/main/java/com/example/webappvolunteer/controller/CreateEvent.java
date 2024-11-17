@@ -74,10 +74,4 @@ public class CreateEvent {
 
         return ResponseEntity.ok(eventInfoDtos);
     }
-
-
-
-
-
-
 }
