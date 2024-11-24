@@ -36,6 +36,6 @@ public class Application {
     @Getter
     @Setter
     @Column(name = "status_application")
-    private Boolean status;
+    private String status;
 
 }

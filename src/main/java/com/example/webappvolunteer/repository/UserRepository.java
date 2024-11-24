@@ -1,5 +1,6 @@
 package com.example.webappvolunteer.repository;
 
+import com.example.webappvolunteer.dto.ShowApplicationDto;
 import com.example.webappvolunteer.entity.Volunteer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<Volunteer, Long> {
@@ -40,6 +42,15 @@ public interface UserRepository extends JpaRepository<Volunteer, Long> {
     void createApplication(@Param("eventId") BigInteger eventId,
                            @Param("actionId") BigInteger actionId,
                            @Param("volunteerId") BigInteger volunteerId);
+    @Query(nativeQuery = true,
+            value = "SELECT act.action_name, ev.event_name, vol.e_mail, ap.status_application " +
+                    "FROM application ap " +
+                    "LEFT JOIN volunteer vol ON ap.volunteer_id = vol.volunteer_id " +
+                    "LEFT JOIN action act ON ap.action_id = act.action_id " +
+                    "LEFT JOIN event ev ON ap.event_id = ev.event_id " +
+                    "WHERE vol.e_mail = :mail")
+    List<Object[]> ShowApplication(String mail);
+
 }
 
 

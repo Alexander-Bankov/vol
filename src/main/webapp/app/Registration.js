@@ -284,7 +284,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
             // Обработка успешного ответа
             document.getElementById("result").textContent = data;
             // Перенаправление на страницу авторизации
-            window.location.href = 'Authorization.html';
+            window.location.href = 'Autorization.html';
         })
         .catch((error) => {
             // Обработка ошибок

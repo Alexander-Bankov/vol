@@ -15,6 +15,15 @@
     <h1>Личный кабинет волонтера</h1>
 </div>
 <section id="services">
+<!--    <div style="position: absolute; top: 10px; right: 20px;">-->
+<!--        <button id="logoutButton" class="btn btn-danger">Выход</button>-->
+<!--    </div>-->
+    <div style="position: absolute; top: 10px; right: 20px;">
+        <button id="viewActions" class="btn btn-primary" onclick="window.location.href='Actions.html'">Просмотр событий</button>
+<!--        <button id="viewEvents" class="btn btn-primary" onclick="window.location.href='EventsOnAction.html'" style="margin-left: 10px;">Просмотр мероприятий</button>-->
+        <button id="createApplication" class="btn btn-primary" onclick="window.location.href='CreateApplication.html'" style="margin-left: 10px;">Подача заявок</button>
+        <button id="logoutButton" class="btn btn-danger" style="margin-left: 10px;">Выход</button>
+    </div>
     <div class="container" id="actionTable">
         <h2>Личные данные</h2>
         <table class="table">
@@ -65,12 +74,11 @@
                 <th scope="col">События</th>
                 <th scope="col">Мероприятие</th>
                 <th scope="col">Email</th>
-                <th scope="col">Имя</th>
-                <th scope="col">Фамилия</th>
-                <th scope="col">Email</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Действия</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="applicationsBody">
             </tbody>
         </table>
     </div>
@@ -79,214 +87,3 @@
 </body>
 </html>
 
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
-<!--    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>-->
-<!--    <meta http-equiv="Pragma" content="no-cache"/>-->
-<!--    <meta http-equiv="Expires" content="0"/>-->
-<!--    <title>Личный кабинет волонтера</title>-->
-<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
-<!--    <script src="js/bootstrap.bundle.min.js"></script>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="text-center">-->
-<!--    <h1>Личный кабинет волонтера</h1>-->
-<!--</div>-->
-<!--<section id="services">-->
-<!--    <div class="container" id="actionTable">-->
-<!--        <h2>Личные данные</h2>-->
-<!--        <table class="table">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th scope="col">#</th>-->
-<!--                <th scope="col">Email</th>-->
-<!--                <th scope="col">ФИО</th>-->
-<!--                <th scope="col">Дата рождения</th>-->
-<!--                <th scope="col">Адрес проживания</th>-->
-<!--                <th scope="col">Телефон</th>-->
-<!--                <th scope="col">Информация</th>-->
-<!--                <th scope="col">Языки</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr>-->
-<!--                <td>1</td>-->
-<!--                <td><span class="data" id="email"></span></td>-->
-<!--                <td><span class="data" id="fio"></span></td>-->
-<!--                <td><span class="data" id="birthdate"></span></td>-->
-<!--                <td><span class="data" id="address"></span></td>-->
-<!--                <td><span class="data" id="phone"></span></td>-->
-<!--                <td><span class="data" id="info"></span></td>-->
-<!--                <td><span class="data" id="languages"></span></td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--        <div class="col-12">-->
-<!--            <button style="float:left" type="button" id="Change" class="btn btn-primary">Изменить</button>-->
-<!--        </div>-->
-<!--        <div class="col-12">-->
-<!--            <button style="float:left" type="button" id="Save" class="btn btn-primary">Сохранить</button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <br></br>-->
-<!--    <div class="container" id="zayavkaTable">-->
-<!--        <h2>Заявки</h2>-->
-<!--        <table class="table">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th scope="col">#</th>-->
-<!--                <th scope="col">События</th>-->
-<!--                <th scope="col">Мероприятие</th>-->
-<!--                <th scope="col">Email</th>-->
-<!--                <th scope="col">Имя</th>-->
-<!--                <th scope="col">Фамилия</th>-->
-<!--                <th scope="col">Email</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--</section>-->
-<!--<script>document.write("<script type='text/javascript' src='app/ShowPersonalInfo.js?v=" + Date.now() + "'><\/script>");</script>-->
-
-<!--</body>-->
-<!--</html>-->
-
-
-
-
-
-
-<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
-<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
-<!--&lt;!&ndash;<head>&ndash;&gt;-->
-<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
-<!--&lt;!&ndash;    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    <meta http-equiv="Pragma" content="no-cache"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    <meta http-equiv="Expires" content="0"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    <title>Медицинские Калькуляторы</title>&ndash;&gt;-->
-<!--&lt;!&ndash;    <link rel="stylesheet" href="css/bootstrap.min.css">&ndash;&gt;-->
-<!--&lt;!&ndash;    <script src="js/bootstrap.bundle.min.js"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;</head>&ndash;&gt;-->
-<!--&lt;!&ndash;<body>&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="text-center">&ndash;&gt;-->
-<!--&lt;!&ndash;    <h1>Личный кабинет волонтера</h1>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;<section id="services">&ndash;&gt;-->
-<!--&lt;!&ndash;    <div class="container" id="actionTable">&ndash;&gt;-->
-<!--&lt;!&ndash;        <h2>Личные данные</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table class="table">&ndash;&gt;-->
-<!--&lt;!&ndash;            <thead>&ndash;&gt;-->
-<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">#</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Email</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Имя</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Фамилия</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Отчество</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Дата рождения</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Адрес проживания</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Языки</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Краткая информация</th>&ndash;&gt;-->
-<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
-<!--&lt;!&ndash;            </thead>&ndash;&gt;-->
-<!--&lt;!&ndash;            <tbody>&ndash;&gt;-->
-<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td>1</td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><span class="data">example@example.com</span></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><span class="data">Иван</span></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><span class="data">Иванов</span></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><span class="data">Иванович</span></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><span class="data">01.01.1990</span></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><span class="data">Москва, ул. Ленина</span></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><span class="data">Русский</span></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><span class="data">Краткая информация</span></td>&ndash;&gt;-->
-<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
-<!--&lt;!&ndash;            </tbody>&ndash;&gt;-->
-<!--&lt;!&ndash;        </table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="col-12">&ndash;&gt;-->
-<!--&lt;!&ndash;            <button style="float:left" type="button" id="Change" class="btn btn-primary">Изменить</button>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="col-12">&ndash;&gt;-->
-<!--&lt;!&ndash;            <button style="float:left" type="button" id="Save" class="btn btn-primary">Сохранить</button>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    <br></br>&ndash;&gt;-->
-<!--&lt;!&ndash;    <div class="container" id="zayavkaTable">&ndash;&gt;-->
-<!--&lt;!&ndash;        <h2>Заявки</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table class="table">&ndash;&gt;-->
-<!--&lt;!&ndash;            <thead>&ndash;&gt;-->
-<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">#</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">События</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Мероприятие</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Email</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Имя</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Фамилия</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                <th scope="col">Email</th>&ndash;&gt;-->
-<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
-<!--&lt;!&ndash;            </thead>&ndash;&gt;-->
-<!--&lt;!&ndash;            <tbody>&ndash;&gt;-->
-<!--&lt;!&ndash;            </tbody>&ndash;&gt;-->
-<!--&lt;!&ndash;        </table>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;</section>&ndash;&gt;-->
-<!--&lt;!&ndash;<script>&ndash;&gt;-->
-<!--&lt;!&ndash;    let isEditing = false;&ndash;&gt;-->
-
-<!--&lt;!&ndash;    document.getElementById('Change').onclick = function() {&ndash;&gt;-->
-<!--&lt;!&ndash;        const cells = document.querySelectorAll('tbody td');&ndash;&gt;-->
-<!--&lt;!&ndash;        cells.forEach((cell, index) => {&ndash;&gt;-->
-<!--&lt;!&ndash;            if (index > 0) { // Пропустить первый столбец #&ndash;&gt;-->
-<!--&lt;!&ndash;                const data = cell.querySelector('.data').innerText;&ndash;&gt;-->
-<!--&lt;!&ndash;                cell.innerHTML = `<input type="text" class="form-control" value="${data}"/>`;&ndash;&gt;-->
-<!--&lt;!&ndash;            }&ndash;&gt;-->
-<!--&lt;!&ndash;        });&ndash;&gt;-->
-<!--&lt;!&ndash;        this.style.display = 'none'; // Скрыть кнопку "Изменить"&ndash;&gt;-->
-<!--&lt;!&ndash;    };&ndash;&gt;-->
-
-<!--&lt;!&ndash;    document.getElementById('Save').onclick = function() {&ndash;&gt;-->
-<!--&lt;!&ndash;        const inputs = document.querySelectorAll('tbody input');&ndash;&gt;-->
-<!--&lt;!&ndash;        const dataToSend = Array.from(inputs).map(input => input.value);&ndash;&gt;-->
-
-<!--&lt;!&ndash;        // Пример отправки данных на сервер (контроллер) с использованием fetch&ndash;&gt;-->
-<!--&lt;!&ndash;        fetch('/your-controller-endpoint', {&ndash;&gt;-->
-<!--&lt;!&ndash;            method: 'POST',&ndash;&gt;-->
-<!--&lt;!&ndash;            headers: {&ndash;&gt;-->
-<!--&lt;!&ndash;                'Content-Type': 'application/json'&ndash;&gt;-->
-<!--&lt;!&ndash;            },&ndash;&gt;-->
-<!--&lt;!&ndash;            body: JSON.stringify({&ndash;&gt;-->
-<!--&lt;!&ndash;                email: dataToSend[0],&ndash;&gt;-->
-<!--&lt;!&ndash;                firstName: dataToSend[1],&ndash;&gt;-->
-<!--&lt;!&ndash;                lastName: dataToSend[2],&ndash;&gt;-->
-<!--&lt;!&ndash;                patronymic: dataToSend[3],&ndash;&gt;-->
-<!--&lt;!&ndash;                birthDate: dataToSend[4],&ndash;&gt;-->
-<!--&lt;!&ndash;                address: dataToSend[5],&ndash;&gt;-->
-<!--&lt;!&ndash;                languages: dataToSend[6],&ndash;&gt;-->
-<!--&lt;!&ndash;                info: dataToSend[7]&ndash;&gt;-->
-<!--&lt;!&ndash;            })&ndash;&gt;-->
-<!--&lt;!&ndash;        })&ndash;&gt;-->
-<!--&lt;!&ndash;            .then(response => {&ndash;&gt;-->
-<!--&lt;!&ndash;                if (response.ok) {&ndash;&gt;-->
-<!--&lt;!&ndash;                    alert('Данные успешно сохранены!');&ndash;&gt;-->
-<!--&lt;!&ndash;                    // Обновить таблицу или выполнить другую логику после успешного сохранения&ndash;&gt;-->
-<!--&lt;!&ndash;                } else {&ndash;&gt;-->
-<!--&lt;!&ndash;                    alert('Ошибка при сохранении данных!');&ndash;&gt;-->
-<!--&lt;!&ndash;                }&ndash;&gt;-->
-<!--&lt;!&ndash;            })&ndash;&gt;-->
-<!--&lt;!&ndash;            .catch(error => {&ndash;&gt;-->
-<!--&lt;!&ndash;                console.error('Ошибкa:', error);&ndash;&gt;-->
-<!--&lt;!&ndash;                alert('Сетевой запрос завершился неудачно.');&ndash;&gt;-->
-<!--&lt;!&ndash;            });&ndash;&gt;-->
-<!--&lt;!&ndash;    };&ndash;&gt;-->
-<!--&lt;!&ndash;</script>&ndash;&gt;-->
-<!--&lt;!&ndash;</body>&ndash;&gt;-->
-<!--&lt;!&ndash;</html>&ndash;&gt;-->
