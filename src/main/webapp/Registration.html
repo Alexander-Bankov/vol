@@ -35,46 +35,58 @@
             <form name="form" id="form">
                 <div class="mb-3">
                     <label for="mailInput" class="form-label">MAIL</label>
-                    <input type="email" id="mailInput" class="form-control" aria-describedby="mail" >
+                    <input type="email" id="mailInput" class="form-control" aria-describedby="mail" minlength="4" maxlength="25" required>
                     <div id="mail" class="form-control">
                         Введите e-mail
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="passwordInput" class="form-label">пароль</label>
-                    <input type="password" id="passwordInput" class="form-control" aria-describedby="password" >
+                    <label for="passwordInput" class="form-label">Пароль</label>
+                    <input type="password" id="passwordInput" class="form-control" aria-describedby="password" minlength="4" maxlength="20" required>
                     <div id="password" class="form-control">
-                        Введите password
+                        Введите пароль
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="mailInput" class="form-label">ФАМИЛИЯ</label>
-                    <input type="String" id="lastNameInput" class="form-control" aria-describedby="lastName" >
-                    <div id="lastName" class="form-control">
-                        Введите фамилию
-                    </div>
+                    <label for="lastNameInput" class="form-label">ФАМИЛИЯ</label>
+                    <input type="text" id="lastNameInput" class="form-control" aria-describedby="lastName" maxlength="25">
+                    <span id="lastNameHint" class="form-text">Введите фамилию (только буквы, пробелы и дефисы)</span>
+                    <div id="lastNameError" class="form-control text-danger" style="display: none;"></div>
                 </div>
                 <div class="mb-3">
-                    <label for="mailInput" class="form-label">ИМЯ</label>
-                    <input type="String" id="firstNameInput" class="form-control" aria-describedby="firstName" >
-                    <div id="firstName" class="form-control">
-                        Введите имя
-                    </div>
+                    <label for="firstNameInput" class="form-label">ИМЯ</label>
+                    <input type="text" id="firstNameInput" class="form-control" aria-describedby="firstName" maxlength="25">
+                    <span id="firstNameHint" class="form-text">Введите имя (только буквы, пробелы и дефисы)</span>
+                    <div id="firstNameError" class="form-control text-danger" style="display: none;"></div> <!-- Исправленный идентификатор -->
                 </div>
                 <div class="mb-3">
-                    <label for="mailInput" class="form-label">ОТЧЕСТВО</label>
-                    <input type="String" id="secondNameInput" class="form-control" aria-describedby="secondName" >
-                    <div id="secondName" class="form-control">
-                        Введите отчество
-                    </div>
+                    <label for="secondNameInput" class="form-label">ОТЧЕСТВО</label>
+                    <input type="text" id="secondNameInput" class="form-control" aria-describedby="secondName" maxlength="25">
+                    <span id="secondNameHint" class="form-text">Введите отчество (только буквы, пробелы и дефисы)</span>
+                    <div id="secondNameError" class="form-control text-danger" style="display: none;"></div> <!-- Исправленный идентификатор -->
                 </div>
                 <div class="mb-3">
-                    <label for="mailInput" class="form-label">ДАТА РОЖДЕНИЯ</label>
-                    <input type="Date" id="birthDateInput" class="form-control" aria-describedby="birthDate" >
+                    <label for="birthDateInput" class="form-label">ДАТА РОЖДЕНИЯ</label>
+                    <input type="date" id="birthDateInput" class="form-control" aria-describedby="birthDate" required>
                     <div id="birthDate" class="form-control">
                         Введите дату рождения
                     </div>
                 </div>
+
+                <script>
+                    // Получаем текущую дату
+                    const today = new Date();
+                    // Вычисляем дату, которая будет меньше на 18 лет
+                    const minDate = new Date(today.setFullYear(today.getFullYear() - 18));
+                    // Форматируем дату в виде YYYY-MM-DD
+                    const year = minDate.getFullYear();
+                    const month = String(minDate.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
+                    const day = String(minDate.getDate()).padStart(2, '0');
+
+                    // Устанавливаем max атрибут для поля ввода даты
+                    document.getElementById('birthDateInput').setAttribute('max', `${year}-${month}-${day}`);
+                </script>
+
                 <div class="mb-3">
                     <label for="mailInput" class="form-label">АДРЕС ПРОЖИВАНИЯ</label>
                     <input type="String" id="addressInput" class="form-control" aria-describedby="birthDate" >
@@ -84,7 +96,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="mailInput" class="form-label">ТЕЛЕФОН</label>
-                    <input type="String" id="phoneInput" class="form-control" aria-describedby="phone" >
+                    <input type="tel" id="phoneInput" class="form-control" aria-describedby="phone" >
                     <div id="phone" class="form-control">
                         введите телефон (начинать с +7)
                     </div>
@@ -99,10 +111,10 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="mailInput" class="form-label">КРАТКИЕ СВЕДЕНИЯ О СЕБЕ</label>
-                    <input type="String" id="informationAboutPersonInput" class="form-control" aria-describedby="language" >
+                    <label for="informationAboutPersonInput" class="form-label">КРАТКИЕ СВЕДЕНИЯ О СЕБЕ</label>
+                    <textarea id="informationAboutPersonInput" class="form-control" maxlength="1000" required></textarea>
                     <div id="informationAboutPerson" class="form-control">
-                        введите краткие сведения о себе
+                        Введите краткие сведения о себе
                     </div>
                 </div>
 
