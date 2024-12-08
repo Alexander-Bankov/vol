@@ -31,7 +31,7 @@ public class CreateApplicationController {
         this.eventRepository = eventRepository;
         this.applicationRepository = applicationRepository;
     }
-
+    @Transactional
     @PostMapping("/create")
     public ResponseEntity<String> createApplication(@RequestParam String actionName,
                                                     @RequestParam String eventName,
@@ -50,7 +50,31 @@ public class CreateApplicationController {
             BigInteger volunteerId = BigInteger.valueOf(optionalVolunteer.get());
             BigInteger actionId = BigInteger.valueOf(optionalAction.get());
             BigInteger eventId = BigInteger.valueOf(optionalEvent.get());
+            Optional<Integer> kolvoOpt = eventRepository.findActionKolvoByName(eventId.longValue());
+            Optional<Integer> maxKolVoOpt = eventRepository.findActionMaxKolvoByName(eventId.longValue());
+            Integer kolvo = kolvoOpt.orElse(0); // если значение отсутствует, возвращаем 0
+            Integer maxKolVo = maxKolVoOpt.orElse(0);
+            // Проверяем наличие предыдущей заявки на это событие и мероприятие
+            List<BigInteger> existingApplications = applicationRepository.findApplicationIdsByEmailAndActionAndEvent(
+                    optionalVolunteer.get(),
+                    optionalAction.get(),
+                    optionalEvent.get()
+            );
 
+            if (!existingApplications.isEmpty()) {
+                //throw new RuntimeException();
+                return ResponseEntity.badRequest().body("Заявка на это событие и мероприятие уже существует.");
+            }
+            if(kolvo > maxKolVo) {
+                //throw new RuntimeException();
+                return ResponseEntity.badRequest().body("Максимальное количество волонтеров");
+            }
+            try{
+                eventRepository.incrementVolunteerCount(eventId.longValue());
+
+            } catch (Exception e){
+                return ResponseEntity.badRequest().body("Максимальное количество волонтеров");
+            }
             // Создаем новую заявку
             Application application = new Application();
             application.setEventId(eventId);

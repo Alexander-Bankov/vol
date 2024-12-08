@@ -1,5 +1,6 @@
 package com.example.webappvolunteer.config;
 
+import com.example.webappvolunteer.enums.Role;
 import com.example.webappvolunteer.service.CustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
+import static com.example.webappvolunteer.enums.Role.ADMIN;
 import static com.example.webappvolunteer.enums.Role.VOLUNTEER;
 
 @EnableWebSecurity
@@ -51,7 +53,8 @@ public class SecurityConfig {
                         .requestMatchers("/vol/login").permitAll()
                         .requestMatchers("/get-guide/languages").permitAll()
                         .requestMatchers("Autorization.html", "/swagger-ui.html").permitAll()
-                        .requestMatchers("/Registration.html", "/app/**", "/js/**", "/css/**").permitAll() // Разрешаем доступ к HTML, JS и CSS
+                        .requestMatchers("/Registration.html", "/app/**", "/js/**", "/css/**").permitAll()
+                        .requestMatchers("/AdministratorInfo.html", "/CreateActions.html","/CreateEvents.html","/CreateGuides.html","/app/**", "/js/**", "/css/**").hasAuthority("ADMIN") // Разрешаем доступ к HTML, JS и CSS
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

@@ -5,6 +5,8 @@ import com.example.webappvolunteer.entity.GuideLanguage;
 import com.example.webappvolunteer.repository.UserRepository;
 import com.example.webappvolunteer.repository.guideRepository.GuideActionRepository;
 import com.example.webappvolunteer.repository.guideRepository.GuideLanguageRepository;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -25,7 +27,6 @@ public class CreateGuide {
         this.guideLanguageRepository = guideLanguageRepository;
         this.guideActionRepository = guideActionRepository;
     }
-    @PreAuthorize("hasRole('VOLUNTEER')")
     @PostMapping("/language")
     public ResponseEntity<?> createLanguagesGuide(@RequestBody GuideLanguage guideLanguage) {
         // Проверка аутентификации
@@ -37,10 +38,16 @@ public class CreateGuide {
             System.out.println("User is not authenticated");
         }
 
-        guideLanguageRepository.save(guideLanguage);
-        return ResponseEntity.ok().build();
+        try {
+            guideLanguageRepository.save(guideLanguage);
+            return ResponseEntity.ok().build();
+        } catch (DataIntegrityViolationException e) {
+            // Обработка ошибки сохранения. Возможно, такое событие уже есть.
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Ошибка создания языка. Возможно, такой язык уже существует.");
+        }
     }
-    @PreAuthorize("hasRole('VOLUNTEER')")
+
     @PostMapping("/action")
     public ResponseEntity<?> createActionGuide(@RequestBody GuideAction guideAction) {
         // Проверка аутентификации
@@ -52,7 +59,14 @@ public class CreateGuide {
             System.out.println("User is not authenticated");
         }
 
-        guideActionRepository.save(guideAction);
-        return ResponseEntity.ok().build();
+        try {
+            guideActionRepository.save(guideAction);
+            return ResponseEntity.ok().build();
+        } catch (DataIntegrityViolationException e) {
+            // Обработка ошибки сохранения. Возможно, такое событие уже есть.
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Ошибка создания действия. Возможно, такое действие уже существует.");
+        }
     }
+
 }

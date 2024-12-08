@@ -33,13 +33,14 @@ public class CreateEvent {
 
     @PostMapping("/full-event")
     public ResponseEntity createAction(@RequestBody Event createEvent) {
+        Action action = new Action();
         try {
             // Получаем ID действия по имени
             Optional<Long> actionId = eventRepository.findActionIdByName(createEvent.getActionName());
 
             if (actionId.isPresent()) {
                 // Если действие найдено, устанавливаем его в событие
-                Action action = actionRepository.findById(actionId.get())
+                action = actionRepository.findById(actionId.get())
                         .orElseThrow(() -> new RuntimeException("Action not found"));
                 createEvent.setAction(action);
             } else {
@@ -47,6 +48,25 @@ public class CreateEvent {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Action not found");
             }
 
+            LocalDate startActionDate = action.getActionStart();
+            LocalDate endActionDate = action.getActionEnd();
+
+            // Преобразуем LocalDate в LocalDateTime (устанавливаем время на начало или конец дня)
+            LocalDateTime startActionDateTime = startActionDate.atStartOfDay();
+            LocalDateTime endActionDateTime = endActionDate.atTime(23, 59, 59, 999999999);
+
+
+            // Проверка корректности дат
+            if (createEvent.getStartTime().isBefore(startActionDateTime) || createEvent.getEndTime().isAfter(endActionDateTime)) {
+                throw new RuntimeException("Неверные даты. " +
+                                           "Дата начала мероприятия должна быть позже дата начала события. " +
+                                           "Дата конца мероприятия должна быть раньше даты конца события");
+            }
+            // Проверка корректности дат
+            if (createEvent.getMaxVolunteerCount()>20) {
+                throw new RuntimeException("Максимальное количество волонтеров 20");
+            }
+            createEvent.setVolunteerCount(0);
             // Сохраняем событие в базе данных
             Event savedEvent = eventRepository.save(createEvent);
             return ResponseEntity.ok(savedEvent);
@@ -55,6 +75,8 @@ public class CreateEvent {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
+
 
 
     @GetMapping("/events")

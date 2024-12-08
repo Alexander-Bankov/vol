@@ -14,7 +14,7 @@
 <body>
 <header th:fragment="head">
 </header>
-<button class="btn btn-primary mt-1" id="Reverse" onclick="window.location.href='PersonalInfoVolunteer.html'">Вернуться в личный кабинет</button>
+<button class="btn btn-primary mt-1" id="Reverse" onclick="window.location.href='AdministratorInfo.html'">Вернуться в личный кабинет</button>
 
 <div class="container">
     <div class="row">
@@ -24,7 +24,7 @@
             <form name="form" id="form">
                 <div class="mb-3">
                     <label for="actionInput" class="form-label">Событие</label>
-                    <input type="string" id="actionInput" class="form-control" aria-describedby="action">
+                    <input type="string" id="actionInput" class="form-control" aria-describedby="action" maxlength="35" required oninput="validateInput(this)">
                     <div id="action_name" class="form-control">
                         Введите название события
                     </div>
@@ -36,12 +36,24 @@
                 <br>
                 <br>
                 <div class="mb-3">
-                    <label for="languageInput" class="form-label">ЯЗЫК</label>
-                    <input type="string" id="languageInput" class="form-control" aria-describedby="language">
+                    <label for="languageInput" class="form-label">Название языка</label>
+                    <input type="text" id="languageInput" class="form-control"
+                           aria-describedby="language" maxlength="25" required oninput="validateInput(this)">
                     <div id="language" class="form-control">
                         Введите название языка
                     </div>
                 </div>
+                <script>
+                    function validateInput(input) {
+                        const value = input.value;
+                        // Удаляем все некорректные символы (в данном случае цифры)
+                        input.value = value.replace(/[^A-Za-zА-Яа-яЁё ]/g, '');
+                        // Преобразуем первую букву к заглавной
+                        if (input.value) {
+                            input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1).toLowerCase();
+                        }
+                    }
+                </script>
                 <div class="col-12">
                     <button style="float:left" type="submit" id="SaveLanguage" class="btn btn-primary">добавить язык</button>
                 </div>

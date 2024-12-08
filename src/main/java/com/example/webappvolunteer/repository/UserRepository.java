@@ -17,8 +17,14 @@ public interface UserRepository extends JpaRepository<Volunteer, Long> {
     @Query("SELECT v FROM Volunteer v WHERE v.mail = :email")
     Optional<Volunteer> findByEmail(String email);
 
+    @Query("SELECT v FROM Volunteer v")
+    Optional<List<Volunteer>> findAllVolunteers();
+
     @Query("SELECT v.volunteerId FROM Volunteer v WHERE v.mail = :email")
     Optional<Long> findIdByEmail(String email);
+
+    @Query("SELECT v.role FROM Volunteer v WHERE v.mail = :email")
+    Optional<String> findRoleByEmail(String email);
 
     @Modifying
     @Transactional
@@ -48,7 +54,12 @@ public interface UserRepository extends JpaRepository<Volunteer, Long> {
                     "LEFT JOIN volunteer vol ON ap.volunteer_id = vol.volunteer_id " +
                     "LEFT JOIN action act ON ap.action_id = act.action_id " +
                     "LEFT JOIN event ev ON ap.event_id = ev.event_id " +
-                    "WHERE vol.e_mail = :mail")
+                    "WHERE vol.e_mail = :mail " + // добавили пробел перед ORDER BY
+                    "ORDER BY CASE ap.status_application " +
+                    "WHEN 'INPROCESS' THEN 1 " +
+                    "WHEN 'ACCEPT' THEN 2 " +
+                    "WHEN 'REJECT' THEN 3 " +
+                    "END")
     List<Object[]> ShowApplication(String mail);
 
 }

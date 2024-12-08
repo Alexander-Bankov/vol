@@ -14,7 +14,7 @@
 <body>
 <header th:fragment="head">
 </header>
-<button class="btn btn-primary mt-1" id="Reverse" onclick="window.location.href='PersonalInfoVolunteer.html'">Вернуться в личный кабинет</button>
+<button class="btn btn-primary mt-1" id="Reverse" onclick="window.location.href='AdministratorInfo.html'">Вернуться в личный кабинет</button>
 
 <div class="container">
     <div class="row">
@@ -34,11 +34,23 @@
 
                 <div class="mb-3">
                     <label for="eventNameInput" class="form-label">Название мероприятия</label>
-                    <input type="string" id="eventNameInput" class="form-control" aria-describedby="event">
+                    <input type="text" id="eventNameInput" class="form-control" aria-describedby="event"
+                           pattern="[A-Za-zА-Яа-яЁё ]+" maxlength="25" required oninput="validateInput(this)">
                     <div id="event" class="form-control">
                         Введите название мероприятия
                     </div>
                 </div>
+                <script>
+                    function validateInput(input) {
+                        const value = input.value;
+                        // Удаляем все некорректные символы (в данном случае цифры)
+                        input.value = value.replace(/[^A-Za-zА-Яа-яЁё ]/g, '');
+                        // Преобразуем первую букву к заглавной
+                        if (input.value) {
+                            input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1).toLowerCase();
+                        }
+                    }
+                </script>
 
                 <div class="mb-3">
                     <label for="eventStartInput" class="form-label">Дата и время начала</label>
@@ -66,9 +78,10 @@
 
                 <div class="mb-3">
                     <label for="maxCountVolunteerInput" class="form-label">Максимальное количество волонтеров</label>
-                    <input type="integer" id="maxCountVolunteerInput" class="form-control" aria-describedby="maxCountVolunteer">
+                    <input type="number" id="maxCountVolunteerInput" class="form-control"
+                           aria-describedby="maxCountVolunteer" maxlength="2" min="1" max="99">
                     <div id="maxCountVolunteer" class="form-control">
-                        Введите максимальное количество волонтеров
+                        Введите максимальное количество волонтеров (от 1 до 99).
                     </div>
                 </div>
 

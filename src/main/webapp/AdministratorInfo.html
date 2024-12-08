@@ -1,122 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Администратор Информация</title>-->
-<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
-<!--    <script src="js/bootstrap.bundle.min.js"></script>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="text-center">-->
-<!--    <h1>Личный кабинет администратора</h1>-->
-<!--</div>-->
-<!--<div style="position: absolute; top: 10px; right: 20px; display: flex; flex-direction: column; align-items: flex-start;">-->
-<!--    <button class="btn btn-primary mt-1" id="CreateAction" onclick="window.location.href='CreateGuides.html'" style="margin-bottom: 5px;">Добавить событие в справочник</button>-->
-<!--    <button class="btn btn-primary mt-1" id="CreateLanguage" onclick="window.location.href='CreateGuides.html'" style="margin-bottom: 5px;">Добавить язык в справочник</button>-->
-<!--    <button class="btn btn-primary mt-1" id="CreateFullAction" onclick="window.location.href='CreateActions.html'" style="margin-bottom: 5px;">Заполнить данные по событию</button>-->
-<!--    <button class="btn btn-primary mt-1" id="CreateFullEvent" onclick="window.location.href='CreateEvents.html'" style="margin-bottom: 5px;">Заполнить данные по мероприятию</button>-->
-<!--    <button class="btn btn-primary mt-1" id="ShowAction" onclick="window.location.href='Actions.html'" style="margin-bottom: 5px;">Заполнить данные по мероприятию</button>-->
-<!--    <button class="btn btn-primary mt-1" id="ShowEvent" onclick="window.location.href='EventsOnAction.html'" style="margin-bottom: 5px;">Заполнить данные по мероприятию</button>-->
-<!--    <button id="logoutButton" class="btn btn-danger">Выход</button>-->
-<!--</div>-->
-
-<!--<section id="services">-->
-<!--    <div class="container" id="volunteerTable">-->
-<!--        <h2>Поиск волонтеров</h2>-->
-<!--        <button style="float:left" type="submit" id="SendMail" class="btn btn-primary">Найти</button>-->
-<!--        <button style="float:left" type="reset" id="ShowAllVolunteer" class="btn btn-primary">Показать все</button>-->
-<!--        <button style="float:left" type="reset" id="ResetMail" class="btn btn-primary">Очистить</button>-->
-<!--        <div class="mb-3">-->
-<!--            <label for="mailInput" class="form-label"></label>-->
-<!--            <input type="email" id="mailInput" class="form-control" aria-describedby="mail">-->
-<!--            <div id="mail" class="form-control">-->
-<!--                Введите mail-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <table class="table" id="personalInfoTable">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th scope="col">#</th>-->
-<!--                <th scope="col">Имя</th>-->
-<!--                <th scope="col">Фамилия</th>-->
-<!--                <th scope="col">Отчество</th>-->
-<!--                <th scope="col">Email</th>-->
-<!--                <th scope="col">Дата рождения</th>-->
-<!--                <th scope="col">Адрес</th>-->
-<!--                <th scope="col">Телефон</th>-->
-<!--                <th scope="col">Языки</th>-->
-<!--                <th scope="col">Краткая информация</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            &lt;!&ndash; Данные из базы данных будут добавляться сюда &ndash;&gt;-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--    <div class="container" id="actionTable">-->
-<!--        <h2>Поиск событий</h2>-->
-<!--        <button style="float:left" type="submit" id="SendNameAction" class="btn btn-primary">Найти</button>-->
-<!--        <button style="float:left" type="reset" id="ShowAllAction" class="btn btn-primary">Показать все</button>-->
-<!--        <button style="float:left" type="reset" id="ResetMailAction" class="btn btn-primary">Очистить</button>-->
-<!--        <div class="mb-3">-->
-<!--            <label for="mailInput" class="form-label"></label>-->
-<!--            <input type="email" id="actionInput" class="form-control" aria-describedby="mail">-->
-<!--            <div id="actionName" class="form-control">-->
-<!--                Введите Название события-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <table class="table" id="actionInfoTable">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th scope="col">#</th>-->
-<!--                <th scope="col">Название события</th>-->
-<!--                <th scope="col">Дата начала события</th>-->
-<!--                <th scope="col">Дата конца события</th>-->
-<!--                <th scope="col">Место проведения</th>-->
-<!--                <th scope="col">Список мероприятий</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            &lt;!&ndash; Данные из базы данных будут добавляться сюда &ndash;&gt;-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--    <div class="container" id="eventsITable">-->
-<!--        <h2>Поиск мероприятий</h2>-->
-<!--        <button style="float:left" type="submit" id="SendEventName" class="btn btn-primary">Найти</button>-->
-<!--        <button style="float:left" type="reset" id="ShowAllEventAction" class="btn btn-primary">Показать все</button>-->
-<!--        <button style="float:left" type="reset" id="ResetEventName" class="btn btn-primary">Очистить</button>-->
-<!--        <div class="mb-3">-->
-<!--            <label for="mailInput" class="form-label"></label>-->
-<!--            <input type="email" id="eventNameInput" class="form-control" aria-describedby="mail">-->
-<!--            <div id="eventsName" class="form-control">-->
-<!--                Введите mail-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <table class="table" id="eventInfoTable">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th scope="col">#</th>-->
-<!--                <th scope="col">Название мероприятия</th>-->
-<!--                <th scope="col">название события, к которому относится</th>-->
-<!--                <th scope="col">место проведения</th>-->
-<!--                <th scope="col">дата и время начала</th>-->
-<!--                <th scope="col">дата и время конца</th>-->
-<!--                <th scope="col">список участников</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            &lt;!&ndash; Данные из базы данных будут добавляться сюда &ndash;&gt;-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-
-<!--</section>-->
-<!--<script>-->
-<!--    document.write("<script type='text/javascript' src='app/ShowPersonalInfo.js?v=" + Date.now() + "'><\/script>");-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -125,6 +6,29 @@
     <title>Администратор Информация</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
+    <style>
+        .scrollable-table {
+            max-height: 200px; /* Установите нужную высоту для 4 записей */
+            overflow-y: auto; /* Добавление вертикальной прокрутки */
+            display: block; /* Необходимо для overflow */
+        }
+
+        /*.scrollable-table table {*/
+        /*    width: 100%;*/
+        /*    table-layout: fixed; !* Чтобы столбцы не раздвигались *!*/
+        /*}*/
+
+        /*.scrollable-table tbody tr {*/
+        /*    display: table; !* Убедитесь, что строки показываются как таблицы *!*/
+        /*    width: 100%;*/
+        /*}*/
+
+        /*.scrollable-table thead, .scrollable-table tbody tr {*/
+        /*    display: table; !* Для лучшего отображения заголовка *!*/
+        /*    table-layout: inherit; !* Чтобы показать ширину заголовка *!*/
+        /*}*/
+
+    </style>
 </head>
 <body>
 <div class="text-center">
@@ -145,7 +49,7 @@
         <h2>Поиск волонтеров</h2>
         <button style="float:left" type="submit" id="SendMail" class="btn btn-primary">Найти</button>
         <button style="float:left" type="reset" id="ShowAllVolunteer" class="btn btn-primary">Показать все</button>
-        <button style="float:left" type="reset" id="ResetMail" class="btn btn-primary">Очистить</button>
+        <button style="float:left" type="reset" id="ResetMail" class="btn btn-primary" onclick="reloadPage()">Очистить</button>
         <div class="mb-3">
             <label for="mailInput" class="form-label"></label>
             <input type="email" id="mailInput" class="form-control" aria-describedby="mail">
@@ -153,31 +57,33 @@
                 Введите mail
             </div>
         </div>
-        <table class="table" id="personalInfoTable">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Имя</th>
-                <th scope="col">Фамилия</th>
-                <th scope="col">Отчество</th>
-                <th scope="col">Email</th>
-                <th scope="col">Дата рождения</th>
-                <th scope="col">Адрес</th>
-                <th scope="col">Телефон</th>
-                <th scope="col">Языки</th>
-                <th scope="col">Краткая информация</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Данные из базы данных будут добавляться сюда -->
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table" id="personalInfoTable">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Отчество</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Дата рождения</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Телефон</th>
+                    <th scope="col">Языки</th>
+                    <th scope="col">Краткая информация</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Данные из базы данных будут добавляться сюда -->
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="container" id="actionTable">
         <h2>Поиск событий</h2>
         <button style="float:left" type="submit" id="SendNameAction" class="btn btn-primary">Найти</button>
         <button style="float:left" type="reset" id="ShowAllAction" class="btn btn-primary">Показать все</button>
-        <button style="float:left" type="reset" id="ResetMailAction" class="btn btn-primary">Очистить</button>
+        <button style="float:left" type="reset" id="ResetMailAction" class="btn btn-primary" onclick="reloadPage()">Очистить</button>
         <div class="mb-3">
             <label for="actionInput" class="form-label"></label>
             <input type="text" id="actionInput" class="form-control" aria-describedby="actionName">
@@ -185,27 +91,29 @@
                 Введите Название события
             </div>
         </div>
-        <table class="table" id="actionInfoTable">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Название события</th>
-                <th scope="col">Дата начала события</th>
-                <th scope="col">Дата конца события</th>
-                <th scope="col">Место проведения</th>
-                <th scope="col">Список мероприятий</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Данные из базы данных будут добавляться сюда -->
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table" id="actionInfoTable">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Название события</th>
+                    <th scope="col">Дата начала события</th>
+                    <th scope="col">Дата конца события</th>
+                    <th scope="col">Место проведения</th>
+                    <th scope="col">Список мероприятий</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Данные из базы данных будут добавляться сюда -->
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="container" id="eventsITable">
         <h2>Поиск мероприятий</h2>
         <button style="float:left" type="submit" id="SendEventName" class="btn btn-primary">Найти</button>
         <button style="float:left" type="reset" id="ShowAllEventAction" class="btn btn-primary">Показать все</button>
-        <button style="float:left" type="reset" id="ResetEventName" class="btn btn-primary">Очистить</button>
+        <button style="float:left" type="reset" id="ResetEventName" class="btn btn-primary" onclick="reloadPage()">Очистить</button>
         <div class="mb-3">
             <label for="eventNameInput" class="form-label"></label>
             <input type="text" id="eventNameInput" class="form-control" aria-describedby="eventsName">
@@ -213,22 +121,25 @@
                 Введите название мероприятия
             </div>
         </div>
-        <table class="table" id="eventInfoTable">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Название мероприятия</th>
-                <th scope="col">Название события, к которому относится</th>
-                <th scope="col">Место проведения</th>
-                <th scope="col">Дата и время начала</th>
-                <th scope="col">Дата и время конца</th>
-                <th scope="col">Список участников</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Данные из базы данных будут добавляться сюда -->
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table" id="eventInfoTable">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Название мероприятия</th>
+                    <th scope="col">Название события, к которому относится</th>
+                    <th scope="col">Место проведения</th>
+                    <th scope="col">Дата и время начала</th>
+                    <th scope="col">Дата и время конца</th>
+                    <th scope="col">Количество участников</th>
+                    <th scope="col">Максимальное количество участников</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Данные из базы данных будут добавляться сюда -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Новая секция для просмотра заявок -->
@@ -276,6 +187,9 @@
     </div>
 </section>
 <script>
+    function reloadPage() {
+        location.reload(); // Перезагрузить страницу
+    }
     document.write("<script type='text/javascript' src='app/Administration.js?v=" + Date.now() + "'><\/script>");
 </script>
 </body>

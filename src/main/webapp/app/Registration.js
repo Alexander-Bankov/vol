@@ -1,59 +1,33 @@
 
-function validateName(input) {
-    // Регулярное выражение для проверки на наличие только букв, пробелов и дефисов
-    const regex = /^[А-Яа-яЁёA-Za-z\s-]+$/;
-    return regex.test(input.value);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const resultDiv = document.getElementById('languageInput');
 
-// Находим все поля для ввода фамилии, имени и отчества
-const lastNameInput = document.getElementById('lastNameInput');
-const firstNameInput = document.getElementById('firstNameInput');
-const secondNameInput = document.getElementById('secondNameInput');
+    // Функция для получения языков
+    const fetchLanguages = async () => {
+        resultDiv.innerHTML = ''; // Сбросить результаты
 
-// Функция для вывода сообщения об ошибке
-function showError(input, message) {
-    const errorDiv = document.getElementById(input.id.replace('Input', 'Error'));
-    errorDiv.textContent = message;
-    errorDiv.style.display = 'block'; // Показываем элемент
-}
+        try {
+            const response = await fetch('/get-guide/languages');
+            const languages = await response.json();
 
-// Функция для снятия сообщения об ошибке
-function clearError(input) {
-    const errorDiv = document.getElementById(input.id.replace('Input', 'Error'));
-    errorDiv.textContent = ''; // Очищаем текст ошибки
-    errorDiv.style.display = 'none'; // Скрываем элемент
-}
-// Добавляем обработчики событий для каждого поля
-lastNameInput.addEventListener('input', function() {
-    if (!validateName(lastNameInput)) {
-        showError(lastNameInput, 'Фамилия может содержать только буквы, пробелы и дефисы.');
-        alert('Пожалуйста, используйте только буквы в фамилии!');
-        lastNameInput.value = ''; // Очищаем поле ввода
-    } else {
-        clearError(lastNameInput);
-    }
+            languages.forEach(language => {
+                const optionElement = document.createElement('option'); // Создаем элемент option
+                optionElement.value = language.languageName; // Используйте name языка в качестве значения
+                optionElement.innerText = language.languageName; // Название языка также
+                resultDiv.appendChild(optionElement); // Добавляем элемент в select
+                console.log(`Добавлен язык: ${optionElement.value} - ${optionElement.innerText}`); // Логируем добавленный язык
+            });
+
+            // Инициализация selectpicker после добавления опций
+            $('.selectpicker').selectpicker('refresh');
+        } catch (error) {
+            console.error('Ошибка при получении языков:', error);
+        }
+    };
+
+    // Вызов функции при загрузке страницы
+    fetchLanguages();
 });
-
-firstNameInput.addEventListener('input', function() {
-    if (!validateName(firstNameInput)) {
-        showError(firstNameInput, 'Имя может содержать только буквы, пробелы и дефисы.');
-        alert('Пожалуйста, используйте только буквы в имени!');
-        firstNameInput.value = ''; // Очищаем поле ввода
-    } else {
-        clearError(firstNameInput);
-    }
-});
-
-secondNameInput.addEventListener('input', function() {
-    if (!validateName(secondNameInput)) {
-        showError(secondNameInput, 'Отчество может содержать только буквы, пробелы и дефисы.');
-        alert('Пожалуйста, используйте только буквы в отчестве!');
-        secondNameInput.value = ''; // Очищаем поле ввода
-    } else {
-        clearError(secondNameInput);
-    }
-});
-
 // Обработчик отправки формы
 document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Остановка стандартного поведения формы

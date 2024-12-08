@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (actionName) {
             try {
-                await fetch('/create-guide/action', {
+                const response = await fetch('/create-guide/action', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -19,10 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ actionName })
                 });
 
-                actionInput.value = ''; // Очистить поле ввода
-                alert('Событие добавлено!'); // Уведомление пользователю
+                if (response.ok) {
+                    actionInput.value = ''; // Очистить поле ввода
+                    alert('Событие добавлено!'); // Уведомление пользователю
+                } else {
+                    const errorMessage = await response.text(); // Получаем текст ошибки из ответа
+                    alert(`Ошибка при добавлении события: ${errorMessage}`);
+                }
             } catch (error) {
                 console.error('Ошибка при добавлении события:', error);
+                alert('Произошла ошибка при добавлении события. Пожалуйста, попробуйте позже.');
             }
         } else {
             alert('Введите название события!');
@@ -36,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (languageName) {
             try {
-                await fetch('/create-guide/language', {
+                const response = await fetch('/create-guide/language', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -44,10 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ languageName })
                 });
 
-                languageInput.value = ''; // Очистить поле ввода
-                alert('Язык добавлен!'); // Уведомление пользователю
+                if (response.ok) {
+                    languageInput.value = ''; // Очистить поле ввода
+                    alert('Язык добавлен!'); // Уведомление пользователю
+                } else {
+                    const errorMessage = await response.text(); // Получаем текст ошибки из ответа
+                    alert(`Ошибка при добавлении языка: ${errorMessage}`);
+                }
             } catch (error) {
                 console.error('Ошибка при добавлении языка:', error);
+                alert('Произошла ошибка при добавлении языка. Пожалуйста, попробуйте позже.');
             }
         } else {
             alert('Введите название языка!');

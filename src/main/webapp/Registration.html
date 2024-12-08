@@ -49,22 +49,39 @@
                 </div>
                 <div class="mb-3">
                     <label for="lastNameInput" class="form-label">ФАМИЛИЯ</label>
-                    <input type="text" id="lastNameInput" class="form-control" aria-describedby="lastName" maxlength="25">
-                    <span id="lastNameHint" class="form-text">Введите фамилию (только буквы, пробелы и дефисы)</span>
-                    <div id="lastNameError" class="form-control text-danger" style="display: none;"></div>
+                    <input type="text" id="lastNameInput" class="form-control"
+                           aria-describedby="lastName" pattern="[A-Za-zА-Яа-яЁё ]+" maxlength="25" required oninput="capitalizeFirstLetter(this)">
+                    <div id="lastName" class="form-control">
+                        Введите фамилию (только буквы)
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="firstNameInput" class="form-label">ИМЯ</label>
-                    <input type="text" id="firstNameInput" class="form-control" aria-describedby="firstName" maxlength="25">
-                    <span id="firstNameHint" class="form-text">Введите имя (только буквы, пробелы и дефисы)</span>
-                    <div id="firstNameError" class="form-control text-danger" style="display: none;"></div> <!-- Исправленный идентификатор -->
+                    <input type="text" id="firstNameInput" class="form-control"
+                           aria-describedby="firstName" pattern="[A-Za-zА-Яа-яЁё ]+" maxlength="25" required oninput="capitalizeFirstLetter(this)">
+                    <div id="firstName" class="form-control">
+                        Введите имя (только буквы)
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="secondNameInput" class="form-label">ОТЧЕСТВО</label>
-                    <input type="text" id="secondNameInput" class="form-control" aria-describedby="secondName" maxlength="25">
-                    <span id="secondNameHint" class="form-text">Введите отчество (только буквы, пробелы и дефисы)</span>
-                    <div id="secondNameError" class="form-control text-danger" style="display: none;"></div> <!-- Исправленный идентификатор -->
+                    <input type="text" id="secondNameInput" class="form-control"
+                           aria-describedby="secondName" pattern="[A-Za-zА-Яа-яЁё ]+" maxlength="25" required oninput="capitalizeFirstLetter(this)">
+                    <div id="secondName" class="form-control">
+                        Введите отчество (только буквы)
+                    </div>
                 </div>
+
+                <script>
+                    function capitalizeFirstLetter(input) {
+                        const value = input.value;
+                        // Проверяем, не пустой ли ввод
+                        if (value) {
+                            // Преобразуем первую букву к заглавной
+                            input.value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+                        }
+                    }
+                </script>
                 <div class="mb-3">
                     <label for="birthDateInput" class="form-label">ДАТА РОЖДЕНИЯ</label>
                     <input type="date" id="birthDateInput" class="form-control" aria-describedby="birthDate" required>
@@ -95,10 +112,11 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="mailInput" class="form-label">ТЕЛЕФОН</label>
-                    <input type="tel" id="phoneInput" class="form-control" aria-describedby="phone" >
+                    <label for="phoneInput" class="form-label">ТЕЛЕФОН</label>
+                    <input type="tel" id="phoneInput" class="form-control" aria-describedby="phone"
+                           pattern="^[+]?\d{1,11}$" maxlength="12" required>
                     <div id="phone" class="form-control">
-                        введите телефон (начинать с +7)
+                        Введите телефон (максимум 12 символов, только цифры и символ +)
                     </div>
                 </div>
                 <div class="mb-3">

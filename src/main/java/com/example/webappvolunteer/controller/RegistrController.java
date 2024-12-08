@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.net.URI;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 //import static com.example.webappvolunteer.config.SecurityConfig.passwordEncoder;
 
@@ -48,7 +52,8 @@ public class RegistrController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+        Map<String, String> response = new HashMap<>();
         try {
             HttpSession existingSession = request.getSession(false);
             if (existingSession != null) {
@@ -68,16 +73,21 @@ public class RegistrController {
             session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
             session.setAttribute("userEmail", loginRequest.getMail());
 
-            // Вывод информации о текущем пользователе
-            System.out.println("Authenticated user: " + authentication.getName());
-            System.out.println("Authorities: " + authentication.getAuthorities());
-            System.out.println(authentication.isAuthenticated());
+            // Получаем роль пользователя
+            Optional<String> optionalRole = userRepository.findRoleByEmail(loginRequest.getMail());
+            String role = optionalRole.orElse("UNKNOWN"); // Указываем роль по умолчанию, если не найдена
 
-            return ResponseEntity.ok("Авторизация успешна");
+            // Заполняем ответ
+            response.put("message", "Авторизация успешна");
+            response.put("role", role);
+
+            return ResponseEntity.ok(response);
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Неверные учетные данные");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("message", "Неверные учетные данные"));
         }
     }
+
+
 
     @GetMapping("/logout")
     public ResponseEntity logout(HttpServletRequest request) {

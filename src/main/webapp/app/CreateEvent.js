@@ -43,7 +43,7 @@ document.getElementById('SaveEventInfo').addEventListener('click', async (event)
     if (actionName && eventName && startTime && endTime && place && maxVolunteerCount) {
         try {
             // Отправляем данные на сервер
-            await fetch('/create-event/full-event', {
+            const response = await fetch('/create-event/full-event', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,17 +58,25 @@ document.getElementById('SaveEventInfo').addEventListener('click', async (event)
                 })
             });
 
-            // Очищаем поля ввода после успешного добавления
-            document.getElementById('actionNameInput').value = '';
-            document.getElementById('eventNameInput').value = '';
-            document.getElementById('eventStartInput').value = '';
-            document.getElementById('eventEndInput').value = '';
-            document.getElementById('placeInput').value = '';
-            document.getElementById('maxCountVolunteerInput').value = '';
+            // Проверяем статус ответа
+            if (response.ok) {
+                // Очищаем поля ввода после успешного добавления
+                document.getElementById('actionNameInput').value = '';
+                document.getElementById('eventNameInput').value = '';
+                document.getElementById('eventStartInput').value = '';
+                document.getElementById('eventEndInput').value = '';
+                document.getElementById('placeInput').value = '';
+                document.getElementById('maxCountVolunteerInput').value = '';
 
-            alert('Мероприятие успешно добавлено! 🎉'); // Уведомление для пользователя
+                alert('Мероприятие успешно добавлено! 🎉'); // Уведомление для пользователя
+            } else {
+                // Если ответ не успешный, получаем сообщение об ошибке
+                const errorMessage = await response.text();
+                alert(`Ошибка при добавлении мероприятия: ${errorMessage} ⚠️`);
+            }
         } catch (error) {
             console.error('Ошибка при добавлении мероприятия:', error);
+            alert('Произошла ошибка при добавлении мероприятия. Пожалуйста, попробуйте еще раз. ⚠️');
         }
     } else {
         alert('Пожалуйста, заполните все поля! ⚠️');
