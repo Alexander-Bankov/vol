@@ -628,6 +628,7 @@ async function submitApplication(actionName, eventName) {
 
         const message = await response.text();
         alert(message);
+        location.reload();
     } catch (error) {
         console.error('Ошибка при отправке заявки:', error);
         alert(error.message); // Отображаем сообщение с ошибкой

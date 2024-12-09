@@ -65,7 +65,7 @@ public class CreateApplicationController {
                 //throw new RuntimeException();
                 return ResponseEntity.badRequest().body("Заявка на это событие и мероприятие уже существует.");
             }
-            if(kolvo > maxKolVo) {
+            if(kolvo +1 > maxKolVo) {
                 //throw new RuntimeException();
                 return ResponseEntity.badRequest().body("Максимальное количество волонтеров");
             }
@@ -119,6 +119,7 @@ public class CreateApplicationController {
         for (BigInteger applicationId : applicationIds) {
             applicationRepository.deleteByApplicationId(applicationId);
         }
+        eventRepository.deleteVolunteerCount(eventId);
 
         return ResponseEntity.ok("Заявки успешно удалены");
     }

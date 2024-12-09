@@ -23,6 +23,11 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("UPDATE Event e SET e.volunteerCount = e.volunteerCount + 1 WHERE e.eventId = :eventId")
     void incrementVolunteerCount(@Param("eventId") Long eventId);
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE Event e SET e.volunteerCount = e.volunteerCount - 1 WHERE e.eventId = :eventId")
+    void deleteVolunteerCount(@Param("eventId") Long eventId);
+
     @Query("SELECT e.volunteerCount FROM Event e WHERE e.eventId = :eventId")
     Optional<Integer> findActionKolvoByName(@Param("eventId") Long eventId);
 

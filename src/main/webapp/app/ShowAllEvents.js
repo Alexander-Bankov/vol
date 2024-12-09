@@ -111,7 +111,7 @@ document.getElementById('applyFilters').addEventListener('click', async function
             url = '/filter/date-events';
             params = `?actionName=${encodeURIComponent(actionName)}&dateStart=${encodeURIComponent(startDate)}&dateEnd=${encodeURIComponent(endDate)}`;
         } else {
-            alert('Пожалуйста, выберите один фильтр для применения.');
+            alert('введите дату начала и конца вместе');
             return;
         }
 
