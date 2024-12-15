@@ -37,6 +37,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT v.eventId FROM Event v WHERE v.eventName = :name")
     Optional<Long> findEventIdByName(String name);
 
+    @Query("SELECT v.eventId FROM Event v WHERE v.eventName = :name and v.actionName = :actionName")
+    Optional<Long> findEventIdsByName(String name,String actionName);
+
     @Query(nativeQuery = true,
             value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +
                     "FROM event e")
@@ -51,6 +54,11 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +
                     "FROM event e WHERE e.event_name = :name")
     List<Object[]> findEventsByEventName(@Param("name") String name);
+
+    @Query(nativeQuery = true,
+            value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +
+                    "FROM event e WHERE e.event_name ILIKE CONCAT(:name, '%')")
+    List<Object[]> findEventsByEventNameLike(@Param("name") String name);
 
     @Query(nativeQuery = true,
             value = "SELECT e.event_name, e.action_name, e.place, e.date_and_time_start, e.date_and_time_end, e.volunteer_count, e.max_volunteer_count " +

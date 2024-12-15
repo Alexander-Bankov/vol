@@ -44,7 +44,7 @@ public class CreateApplicationController {
 
         Optional<Long> optionalVolunteer = userRepository.findIdByEmail(mail);
         Optional<Long> optionalAction = actionRepository.findActionIdByName(actionName);
-        Optional<Long> optionalEvent = eventRepository.findEventIdByName(eventName);
+        Optional<Long> optionalEvent = eventRepository.findEventIdsByName(eventName,actionName);
 
         if (optionalVolunteer.isPresent() && optionalAction.isPresent() && optionalEvent.isPresent()) {
             BigInteger volunteerId = BigInteger.valueOf(optionalVolunteer.get());

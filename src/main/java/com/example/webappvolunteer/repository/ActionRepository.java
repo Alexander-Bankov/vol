@@ -28,6 +28,15 @@ public interface ActionRepository extends JpaRepository<Action, Long> {
                    "STRING_AGG(e.event_name, ', ') AS event_names " +
                    "FROM action a " +
                    "JOIN event e ON a.action_id = e.action_id " +
+                   "WHERE a.action_name ILIKE CONCAT(:name, '%') " +
+                   "GROUP BY a.action_name, a.action_start, a.action_end, a.status",
+            nativeQuery = true)
+    List<Object[]> findActionInfoByActionNameLike(String name);
+
+    @Query(value = "SELECT a.action_name, a.action_start, a.action_end, a.status, " +
+                   "STRING_AGG(e.event_name, ', ') AS event_names " +
+                   "FROM action a " +
+                   "JOIN event e ON a.action_id = e.action_id " +
                    "GROUP BY a.action_name, a.action_start, a.action_end, a.status " +
                    "ORDER BY a.action_name ASC",
             nativeQuery = true)

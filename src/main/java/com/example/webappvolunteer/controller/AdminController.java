@@ -101,7 +101,7 @@ public class AdminController {
 
     @GetMapping("/get-action-by-action-name")
     public ResponseEntity<List<ActionInfoDto>> getActionByActionName(@RequestParam("actionName") String actionNames) {
-        List<Object[]> results = actionRepository.findActionInfoByActionName(actionNames);
+        List<Object[]> results = actionRepository.findActionInfoByActionNameLike(actionNames);
         List<ActionInfoDto> actionInfoDtos = new ArrayList<>();
 
         for (Object[] result : results) {
@@ -137,7 +137,7 @@ public class AdminController {
     }
     @GetMapping("/events-by-name")
     public ResponseEntity<List<EventInfoDto>> getAllEvents(@RequestParam("eventName") String eventName) {
-        List<EventInfoDto> eventInfoDtos = eventRepository.findEventsByEventName(eventName)
+        List<EventInfoDto> eventInfoDtos = eventRepository.findEventsByEventNameLike(eventName)
                 .stream()
                 .map(result -> new EventInfoDto(
                         (String) result[0], // eventName
@@ -155,7 +155,7 @@ public class AdminController {
 
     @GetMapping("/get-personal-info")
     public ResponseEntity<Volunteer> getVolunteerByMail(@RequestParam("mail")  String mail) {
-        Optional<Volunteer> optionalVolunteer = userRepository.findByEmail(mail);
+        Optional<Volunteer> optionalVolunteer = userRepository.findByEmailLike(mail);
         return optionalVolunteer.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

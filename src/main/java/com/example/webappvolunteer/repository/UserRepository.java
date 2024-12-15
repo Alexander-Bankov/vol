@@ -17,6 +17,9 @@ public interface UserRepository extends JpaRepository<Volunteer, Long> {
     @Query("SELECT v FROM Volunteer v WHERE v.mail = :email")
     Optional<Volunteer> findByEmail(String email);
 
+    @Query("SELECT v FROM Volunteer v WHERE v.mail ILIKE CONCAT(:email, '%')")
+    Optional<Volunteer> findByEmailLike(@Param("email") String email);
+
     @Query("SELECT v FROM Volunteer v")
     Optional<List<Volunteer>> findAllVolunteers();
 

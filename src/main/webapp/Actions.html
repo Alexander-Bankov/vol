@@ -14,73 +14,81 @@
     <h1>Список событий</h1>
 </div>
 <section id="services">
-    <div class="mb-3">
-        <label for="actionNameInput" class="form-label">Название события</label>
-        <select id="actionNameInput" class="form-select" aria-describedby="actionName">
-            <option value="" disabled selected>Выберите название события</option>
-        </select>
-        <div id="actionName" class="form-text">
-            Выберите название события из предложенного списка.
-        </div>
-    </div>
-    <button class="btn btn-primary" id="showActions">Показать</button>
-
-    <!-- Сортировка и Фильтры в одной строке -->
-    <div class="row mb-3">
-        <div class="col">
-            <h4>Сортировка:</h4>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="sortOptions" id="sortByDate" value="date">
-                <label class="form-check-label" for="sortByDate">По дате</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="sortOptions" id="sortByStatus" value="status">
-                <label class="form-check-label" for="sortByStatus">По статусу</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="sortOptions" id="sortByName" value="name">
-                <label class="form-check-label" for="sortByName">По названию</label>
-            </div>
-        </div>
-
-        <div class="col">
-            <h4>Фильтры:</h4>
-            <label for="startDateInput" class="form-label">Дата начала</label>
-            <input type="date" id="startDateInput" class="form-control">
-
-            <label for="endDateInput" class="form-label">Дата конца</label>
-            <input type="date" id="endDateInput" class="form-control">
-
-            <label for="statusSelect" class="form-label">Статус события</label>
-            <select id="statusSelect" class="form-select">
-                <option value="" disabled selected>Выберите статус события</option>
-                <option value="district">Районное</option>
-                <option value="municipal">Муниципальное</option>
-                <option value="city">Городское</option>
-                <option value="regional">Областное</option>
-                <option value="national">Всероссийское</option>
+    <div class="container">
+        <div class="mb-3">
+            <label for="actionNameInput" class="form-label">Название события</label>
+            <select id="actionNameInput" class="form-select" aria-describedby="actionName">
+                <option value="" disabled selected>Выберите название события</option>
             </select>
-
-            <button class="btn btn-primary mt-2" id="applyFilters">Применить фильтры</button>
-            <button class="btn btn-primary mt-2" id="Reset">Очистить</button>
+            <div id="actionName" class="form-text">
+                Выберите название события из предложенного списка.
+            </div>
         </div>
-    </div>
+        <button class="btn btn-primary" id="showActions">Показать</button>
 
-    <div class="container" id="actionTable">
-        <table class="table" id="actionInfoTable">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Название события</th>
-                <th scope="col">Дата начала события</th>
-                <th scope="col">Дата конца события</th>
-                <th scope="col">Статус события</th>
-                <th scope="col">Список мероприятий</th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <!-- Сортировка и Фильтры в одной строке -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <h4>Сортировка:</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sortOptions" id="sortByDate" value="date">
+                    <label class="form-check-label" for="sortByDate">По дате</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sortOptions" id="sortByStatus" value="status">
+                    <label class="form-check-label" for="sortByStatus">По статусу</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sortOptions" id="sortByName" value="name">
+                    <label class="form-check-label" for="sortByName">По названию</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h4>Фильтры:</h4>
+                <div class="mb-2">
+                    <label for="startDateInput" class="form-label">Дата начала</label>
+                    <input type="date" id="startDateInput" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label for="endDateInput" class="form-label">Дата конца</label>
+                    <input type="date" id="endDateInput" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label for="statusSelect" class="form-label">Статус события</label>
+                    <select id="statusSelect" class="form-select">
+                        <option value="" disabled selected>Выберите статус события</option>
+                        <option value="district">Районное</option>
+                        <option value="municipal">Муниципальное</option>
+                        <option value="city">Городское</option>
+                        <option value="regional">Областное</option>
+                        <option value="national">Всероссийское</option>
+                    </select>
+                </div>
+                <!-- Кнопки под фильтрами -->
+                <div class="d-flex justify-content-between mt-3">
+                    <button class="btn btn-primary" id="applyFilters">Применить фильтры</button>
+                    <button class="btn btn-secondary" id="Reset">Очистить</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="actionTable">
+            <table class="table" id="actionInfoTable">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Название события</th>
+                    <th scope="col">Дата начала события</th>
+                    <th scope="col">Дата конца события</th>
+                    <th scope="col">Статус события</th>
+                    <th scope="col">Список мероприятий</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>
 <script>
@@ -117,43 +125,45 @@
 <!--    </div>-->
 <!--    <button class="btn btn-primary" id="showActions">Показать</button>-->
 
-<!--    <div class="mb-3">-->
-<!--        <h4>Сортировка:</h4>-->
-<!--        <div class="form-check">-->
-<!--            <input class="form-check-input" type="radio" name="sortOptions" id="sortByDate" value="date">-->
-<!--            <label class="form-check-label" for="sortByDate">По дате</label>-->
+<!--    &lt;!&ndash; Сортировка и Фильтры в одной строке &ndash;&gt;-->
+<!--    <div class="row mb-3">-->
+<!--        <div class="col">-->
+<!--            <h4>Сортировка:</h4>-->
+<!--            <div class="form-check">-->
+<!--                <input class="form-check-input" type="radio" name="sortOptions" id="sortByDate" value="date">-->
+<!--                <label class="form-check-label" for="sortByDate">По дате</label>-->
+<!--            </div>-->
+<!--            <div class="form-check">-->
+<!--                <input class="form-check-input" type="radio" name="sortOptions" id="sortByStatus" value="status">-->
+<!--                <label class="form-check-label" for="sortByStatus">По статусу</label>-->
+<!--            </div>-->
+<!--            <div class="form-check">-->
+<!--                <input class="form-check-input" type="radio" name="sortOptions" id="sortByName" value="name">-->
+<!--                <label class="form-check-label" for="sortByName">По названию</label>-->
+<!--            </div>-->
 <!--        </div>-->
-<!--        <div class="form-check">-->
-<!--            <input class="form-check-input" type="radio" name="sortOptions" id="sortByStatus" value="status">-->
-<!--            <label class="form-check-label" for="sortByStatus">По статусу</label>-->
+
+<!--        <div class="col">-->
+<!--            <h4>Фильтры:</h4>-->
+<!--            <label for="startDateInput" class="form-label">Дата начала</label>-->
+<!--            <input type="date" id="startDateInput" class="form-control">-->
+
+<!--            <label for="endDateInput" class="form-label">Дата конца</label>-->
+<!--            <input type="date" id="endDateInput" class="form-control">-->
+
+<!--            <label for="statusSelect" class="form-label">Статус события</label>-->
+<!--            <select id="statusSelect" class="form-select">-->
+<!--                <option value="" disabled selected>Выберите статус события</option>-->
+<!--                <option value="district">Районное</option>-->
+<!--                <option value="municipal">Муниципальное</option>-->
+<!--                <option value="city">Городское</option>-->
+<!--                <option value="regional">Областное</option>-->
+<!--                <option value="national">Всероссийское</option>-->
+<!--            </select>-->
+
+<!--            <button class="btn btn-primary mt-2" id="applyFilters">Применить фильтры</button>-->
+<!--            <button class="btn btn-primary mt-2" id="Reset">Очистить</button>-->
 <!--        </div>-->
-<!--        <div class="form-check">-->
-<!--            <input class="form-check-input" type="radio" name="sortOptions" id="sortByName" value="name">-->
-<!--            <label class="form-check-label" for="sortByName">По названию</label>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Фильтры &ndash;&gt;-->
-<!--    <div class="mb-3">-->
-<!--        <h4>Фильтры:</h4>-->
-<!--        <label for="startDateInput" class="form-label">Дата начала</label>-->
-<!--        <input type="date" id="startDateInput" class="form-control">-->
-
-<!--        <label for="endDateInput" class="form-label">Дата конца</label>-->
-<!--        <input type="date" id="endDateInput" class="form-control">-->
-
-<!--        <label for="statusSelect" class="form-label">Статус события</label>-->
-<!--        <select id="statusSelect" class="form-select">-->
-<!--            <option value="" disabled selected>Выберите статус события</option>-->
-<!--            <option value="district">Районное</option>-->
-<!--            <option value="municipal">Муниципальное</option>-->
-<!--            <option value="city">Городское</option>-->
-<!--            <option value="regional">Областное</option>-->
-<!--            <option value="national">Всероссийское</option>-->
-<!--        </select>-->
-
-<!--        <button class="btn btn-primary mt-2" id="applyFilters">Применить фильтры</button>-->
-<!--        <button class="btn btn-primary mt-2" id="Reset">Очистить</button>-->
 <!--    </div>-->
 
 <!--    <div class="container" id="actionTable">-->
@@ -178,3 +188,5 @@
 <!--</script>-->
 <!--</body>-->
 <!--</html>-->
+
+

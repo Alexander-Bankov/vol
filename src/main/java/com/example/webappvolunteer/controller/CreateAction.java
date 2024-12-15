@@ -7,6 +7,7 @@ import com.example.webappvolunteer.dto.EventInfoDto;
 import com.example.webappvolunteer.entity.Action;
 import com.example.webappvolunteer.entity.GuideAction;
 import com.example.webappvolunteer.repository.ActionRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +29,15 @@ public class CreateAction {
     @PostMapping("/full-action")
     public ResponseEntity createAction(@RequestBody Action createAction) {
         try {
+            if (createAction.getActionEnd().isBefore(createAction.getActionStart())) {
+                throw new RuntimeException("Дата начала должна быть раньше даты конца");
+            }
             actionRepository.save(createAction);
             return ResponseEntity.ok().build();
         }
         catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(500).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

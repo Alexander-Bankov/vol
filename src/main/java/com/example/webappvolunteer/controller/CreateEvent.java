@@ -55,6 +55,9 @@ public class CreateEvent {
             LocalDateTime startActionDateTime = startActionDate.atStartOfDay();
             LocalDateTime endActionDateTime = endActionDate.atTime(23, 59, 59, 999999999);
 
+            if(createEvent.getEndTime().isBefore(createEvent.getStartTime())) {
+                throw new RuntimeException("Дата и время начала мероприятия не может быть позже конца");
+            }
 
             // Проверка корректности дат
             if (createEvent.getStartTime().isBefore(startActionDateTime) || createEvent.getEndTime().isAfter(endActionDateTime)) {
