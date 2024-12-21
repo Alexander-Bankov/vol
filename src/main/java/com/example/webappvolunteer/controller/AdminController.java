@@ -76,7 +76,7 @@ public class AdminController {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         Long actionId = actionRepository.findActionIdByName(actionName)
                 .orElseThrow(() -> new RuntimeException("Action not found"));
-        Long eventId = eventRepository.findEventIdByName(eventName)
+        Long eventId = eventRepository.findEventIdsByName(eventName,actionName)
                 .orElseThrow(() -> new RuntimeException("Event not found"));
         Long applicationId = applicationRepository.findApplicationIdByEmailAndActionAndEvent(mailId, actionId, eventId);
         if (applicationId == null) {

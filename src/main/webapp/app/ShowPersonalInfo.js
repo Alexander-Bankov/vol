@@ -238,7 +238,7 @@ document.getElementById('logoutButton').onclick = function() {
         });
 };
 document.getElementById('viewActions').onclick = function() {
-    window.location.href = 'Actions.html';
+    window.location.href = 'ActionsVolunteer.html';
 };
 
 document.getElementById('viewEvents').onclick = function() {

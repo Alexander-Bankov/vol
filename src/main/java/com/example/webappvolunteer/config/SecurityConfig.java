@@ -53,7 +53,7 @@ public class SecurityConfig {
                         .requestMatchers("/vol/login").permitAll()
                         .requestMatchers("/get-guide/languages").permitAll()
                         .requestMatchers("Autorization.html", "/swagger-ui.html").permitAll()
-                        .requestMatchers("/Registration.html", "/app/**", "/js/**", "/css/**").permitAll()
+                        .requestMatchers("/Registration.html", "/Help.html", "/AboutDeveloper.html", "/app/**", "/image/**","/js/**", "/css/**").permitAll()
                         .requestMatchers("/AdministratorInfo.html", "/CreateActions.html","/CreateEvents.html","/CreateGuides.html","/app/**", "/js/**", "/css/**").hasAuthority("ADMIN") // Разрешаем доступ к HTML, JS и CSS
                         .anyRequest().authenticated()
                 )
